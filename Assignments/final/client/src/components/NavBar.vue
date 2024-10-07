@@ -5,11 +5,9 @@ import { ref, watch } from 'vue';
 </script>
 
 <template>
-    <div>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+        <nav class="navbar is-info" role="navigation" aria-label="main navigation">
 
-   <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="50" height="30" /> -->
+    <div class="navbar-brand">
     <RouterLink to="/">
     <img alt="Samurai Logo" class="logo" src="@/assets/samurai_scale.png" width="50" height="50" />
     </RouterLink>
@@ -69,11 +67,7 @@ import { ref, watch } from 'vue';
     </div>
   </div>
 </nav>
-    </div>
 </template>
 
 <style scoped>
-    .navbar-end {
-  margin-left: auto;
-}
 </style>

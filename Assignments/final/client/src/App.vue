@@ -16,6 +16,18 @@ import Footer from './components/FooterEnd.vue'
 </template>
 
 <style scoped>
+.body{
+  color: aliceblue;
+}
+.container{
+  background-color: whitesmoke;
+  box-shadow: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.1));
+  min-height: 100vh;
+}
+
+</style>
+
+/*
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -77,4 +89,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+*/
