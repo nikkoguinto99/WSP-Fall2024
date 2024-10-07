@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <div class="content">
+      <h1>Wake the fuck up Samurai</h1>
+      <h2>We've got a city to burn</h2>
+  </div>
   </main>
 </template>
