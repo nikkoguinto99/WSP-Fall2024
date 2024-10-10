@@ -16,7 +16,7 @@ import Footer from './components/FooterEnd.vue'
 </template>
 
 <style scoped>
-.body{
+body{
   color: aliceblue;
 }
 .container{

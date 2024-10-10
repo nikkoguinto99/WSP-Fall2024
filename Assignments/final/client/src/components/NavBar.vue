@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
-import { ref, watch } from 'vue';
 
+const isOpen = ref(false)
 </script>
 
 <template>
         <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-
+    <div class="container">
     <div class="navbar-brand">
     <RouterLink to="/">
     <img alt="Samurai Logo" class="logo" src="@/assets/samurai_scale.png" width="50" height="50" />
     </RouterLink>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" 
+    :class="{ 'is-active': isOpen }" @click="isOpen =!isOpen">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -20,7 +22,7 @@ import { ref, watch } from 'vue';
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div class="navbar-menu" :class="{ 'is-active': isOpen }">
     <div class="navbar-start">
         <RouterLink to="/membership" class="navbar-item">Memberships</RouterLink>
     </div>
@@ -33,8 +35,8 @@ import { ref, watch } from 'vue';
           <a class="navbar-item">
             About us
           </a>
-          <a class="navbar-item is-selected">
-            Careers
+          <a class="navbar-item">
+            <RouterLink to="/careers" active-class="is-selected">Careers</RouterLink>
           </a>
           <a class="navbar-item">
             Contact
@@ -66,8 +68,13 @@ import { ref, watch } from 'vue';
       </div>
     </div>
   </div>
+</div>
 </nav>
 </template>
 
 <style scoped>
+.router-link-active{
+  font-weight: bold;
+  border-bottom: 2p solid blue
+}
 </style>
