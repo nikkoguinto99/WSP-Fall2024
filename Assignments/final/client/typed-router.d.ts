@@ -19,11 +19,15 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     '/About': RouteRecordInfo<'/About', '/About', Record<never, never>, Record<never, never>>,
     '/careers': RouteRecordInfo<'/careers', '/careers', Record<never, never>, Record<never, never>>,
-    '/login': RouteRecordInfo<'/login', '/login', Record<never, never>, Record<never, never>>,
-    '/membership': RouteRecordInfo<'/membership', '/membership', Record<never, never>, Record<never, never>>,
-    '/signup': RouteRecordInfo<'/signup', '/signup', Record<never, never>, Record<never, never>>,
+    '/contact': RouteRecordInfo<'/contact', '/contact', Record<never, never>, Record<never, never>>,
+    '/Login': RouteRecordInfo<'/Login', '/Login', Record<never, never>, Record<never, never>>,
+    '/Member': RouteRecordInfo<'/Member', '/Member', Record<never, never>, Record<never, never>>,
+    '/Products/': RouteRecordInfo<'/Products/', '/Products', Record<never, never>, Record<never, never>>,
+    '/shop': RouteRecordInfo<'/shop', '/shop', Record<never, never>, Record<never, never>>,
+    '/SignUp': RouteRecordInfo<'/SignUp', '/SignUp', Record<never, never>, Record<never, never>>,
+    '/terms': RouteRecordInfo<'/terms', '/terms', Record<never, never>, Record<never, never>>,
+    '/Testimonial': RouteRecordInfo<'/Testimonial', '/Testimonial', Record<never, never>, Record<never, never>>,
   }
 }

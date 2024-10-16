@@ -1,11 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <main>
-    <div class="content">
-      <h1>Welcome to Samurai Fitness</h1>
+  <section class="hero is-large is-danger">
+  <div class="hero-body">
+    <p class="title">Welcome to Samurai Fitness</p>
+    <p class="subtitle">Wake up Samurai, we've got calories to burn</p>
   </div>
-  </main>
+</section>
 </template>
+
+<style scoped>
+
+</style>

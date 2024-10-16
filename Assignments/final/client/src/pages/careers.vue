@@ -1,13 +1,15 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 
 </script>
 
 <template>
-    <div>
-        <h1>Contact Us!</h1>
-        <h2 class="subtitle">We would love to hear from you</h2>
-    </div>
+  <div>
+    <div class="container">
+  <div class="notification is-primary">
+    There are <strong>no</strong> job openings at this time. Please try again later!
+  </div>
+</div>
+  </div>
 </template>
 
 <style scoped>
