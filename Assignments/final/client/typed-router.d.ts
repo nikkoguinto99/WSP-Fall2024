@@ -19,15 +19,17 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/About': RouteRecordInfo<'/About', '/About', Record<never, never>, Record<never, never>>,
-    '/careers': RouteRecordInfo<'/careers', '/careers', Record<never, never>, Record<never, never>>,
-    '/contact': RouteRecordInfo<'/contact', '/contact', Record<never, never>, Record<never, never>>,
+    '/activity': RouteRecordInfo<'/activity', '/activity', Record<never, never>, Record<never, never>>,
+    '/friends': RouteRecordInfo<'/friends', '/friends', Record<never, never>, Record<never, never>>,
     '/Login': RouteRecordInfo<'/Login', '/Login', Record<never, never>, Record<never, never>>,
-    '/Member': RouteRecordInfo<'/Member', '/Member', Record<never, never>, Record<never, never>>,
+    '/More/About': RouteRecordInfo<'/More/About', '/More/About', Record<never, never>, Record<never, never>>,
+    '/More/careers': RouteRecordInfo<'/More/careers', '/More/careers', Record<never, never>, Record<never, never>>,
+    '/More/contact': RouteRecordInfo<'/More/contact', '/More/contact', Record<never, never>, Record<never, never>>,
+    '/More/Member': RouteRecordInfo<'/More/Member', '/More/Member', Record<never, never>, Record<never, never>>,
+    '/More/Testimonial': RouteRecordInfo<'/More/Testimonial', '/More/Testimonial', Record<never, never>, Record<never, never>>,
     '/Products/': RouteRecordInfo<'/Products/', '/Products', Record<never, never>, Record<never, never>>,
-    '/shop': RouteRecordInfo<'/shop', '/shop', Record<never, never>, Record<never, never>>,
+    '/search': RouteRecordInfo<'/search', '/search', Record<never, never>, Record<never, never>>,
     '/SignUp': RouteRecordInfo<'/SignUp', '/SignUp', Record<never, never>, Record<never, never>>,
-    '/terms': RouteRecordInfo<'/terms', '/terms', Record<never, never>, Record<never, never>>,
-    '/Testimonial': RouteRecordInfo<'/Testimonial', '/Testimonial', Record<never, never>, Record<never, never>>,
+    '/statistics': RouteRecordInfo<'/statistics', '/statistics', Record<never, never>, Record<never, never>>,
   }
 }

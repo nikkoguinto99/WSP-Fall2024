@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 </script>
 
@@ -15,7 +16,7 @@
   <div class="card-image">
     <figure class="image is-4by3">
       <img
-        src="../assets/dmartinez_c.png"
+        src="../../assets/photos/dmartinez_c.png"
         alt="Placeholder image"
       />
     </figure>
@@ -43,7 +44,7 @@
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
-                      src="../assets/asmasher_c.png"
+                      src="../../assets/photos/asmasher_c.png"
                       alt="Placeholder image"
                     />
                   </figure>
@@ -74,7 +75,7 @@
         <div class="card-image">
           <figure class="image is-4by3">
             <img
-              src="../assets/jsilverhand_c.png"
+              src="../../assets/photos/jsilverhand_c.png"
               alt="Placeholder image"
             />
           </figure>

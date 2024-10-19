@@ -197,8 +197,8 @@ const isOpen = ref(false)
     <div class="select">
       <select>
         <option>Free Membership</option>
-        <option>Standard Membership</option>
-        <option>Membership +</option>
+        <option>Standard Membership (9.99)</option>
+        <option>Membership+ (15.99)</option>
       </select>
     </div>
   </div>
