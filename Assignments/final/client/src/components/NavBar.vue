@@ -2,8 +2,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import FlyoutPanel from './FlyoutPanel.vue';
 
 const isOpen = ref(false)
+const isCartOpen = ref(false)
 </script>
 
 <template>
@@ -142,19 +144,23 @@ const isOpen = ref(false)
           </a>
         </div>
       </div>
+      <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}"
+      @click="isCartOpen = !isCartOpen">
+        <span class="icon">
+          <i class="fas fa-shopping-cart"></i>
+          </span>
+
+      </button>
         </div>
       </div>
     </div>
   </div>
   </div>
+  <FlyoutPanel :is-open="isCartOpen">
+    <h1 class="title has-text-black">Shopping Cart</h1>
+  </FlyoutPanel>
 </nav>
   </div>
-
-  <!--
-  <a class="button is-primary" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
-            <strong>Admin</strong>
-          </a>
-  -->
 </template>
 
 <style scoped>
