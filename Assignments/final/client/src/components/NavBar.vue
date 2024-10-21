@@ -14,7 +14,7 @@ const isOpen = ref(false)
         <!-- Home Button is linked to icon similar to how Bulma Icon links to bulma.io-->
     <RouterLink to="/">
     <a class="navbar-item">
-      <img class="homeimg" src="../assets/logo.png"> Home
+      <img class="homeimg" src="../assets/logo.png"> <label for="" class="label">Home</label>
     </a></RouterLink>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -29,28 +29,38 @@ const isOpen = ref(false)
   <div class="navbar-menu" :class="{ 'is-active': isOpen }">
     <div class="navbar-start">
       <a class="navbar-item has-text-black">
-        <i class="fas fa-user"></i>
-        <RouterLink to="/activity">My Activity</RouterLink>
+        <RouterLink to="/activity"><label for="navbar-item" class="label">
+          <i class="fas fa-user"></i>
+          My Activity
+        </label></RouterLink>
       </a>
 
       <a class="navbar-item">
-        <i class="fas fa-chart-line"></i>
-        <RouterLink to="/statistics">Statistics</RouterLink>
+        <RouterLink to="/statistics"><label for="navbar-item" class="label">
+          <i class="fas fa-chart-line"></i>
+          Statistics
+        </label></RouterLink>
       </a>
 
       <a class="navbar-item">
-        <i class="fas fa-users"></i>
-        <RouterLink to="/friends">Friends' Activity</RouterLink>
+        <RouterLink to="/friends"><label for="navbar-item" class="label">
+          <i class="fas fa-users"></i>
+          Friends' Activity
+        </label></RouterLink>
       </a>
 
       <a class="navbar-item">
-        <i class="fas fa-search"></i>
-        <RouterLink to="/search">Search</RouterLink>
+        <RouterLink to="/search"><label for="navbar-item" class="label">
+          <i class="fas fa-search"></i>
+          Search
+        </label></RouterLink>
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          More
+          <label for="navbar-item" class="label">
+            More
+          </label>
         </a>
 
         <div class="navbar-dropdown">
@@ -85,7 +95,9 @@ const isOpen = ref(false)
         <div class="buttons">
 
           <a class="button is-primary">
-            <RouterLink to="/signup"><strong>Sign up</strong></RouterLink>
+            <RouterLink to="/signup"><label for="navbar-item" class="label">
+              <strong>Sign up</strong>
+            </label></RouterLink>
           </a>
           <div class="navbar-item has-dropdown is-hoverable">
         <a class="button is-white">
@@ -149,16 +161,15 @@ const isOpen = ref(false)
   .router-link-active {
     font-weight: bold;
     border-bottom: 2px solid blue;
-    color: black
   }
 
   .homeimg {
     margin-top: 5px;
   }
 
-  .navbar-item {
-    color: black;
-    text-decoration: none;
+  .label {
+    color: black !important;
+    cursor: pointer;
   }
 
 </style>
