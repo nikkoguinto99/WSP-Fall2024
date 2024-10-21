@@ -24,6 +24,7 @@ products.value = getAll().data
 }
 
 .shelf .box {
-    width: 300px;
+    width: 15rem;
+    flex-grow: 1;
 }
 </style>
