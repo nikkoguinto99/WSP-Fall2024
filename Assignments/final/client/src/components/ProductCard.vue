@@ -1,12 +1,13 @@
-<!-- eslint-disable vue/no-dupe-keys -->
 <script setup lang="ts">
-import type { Product } from '@/models/products'; //Imports typescript not javascript
+import type { Product } from '@/models/products';
+import { addToCart } from '@/models/shoppingCart';
 
-defineProps<{                                     //Defines the props as macro
+const props = defineProps<{
     product: Product
 }>()
-
+const { product } = props
 </script>
+
 <template>
     <div class="box">
         <div class="box-image">
@@ -14,26 +15,27 @@ defineProps<{                                     //Defines the props as macro
         </div>
         <div class="box-content">
             <h3>{{ product.title }}</h3>
-            <p> {{ product.brand }}</p>
+            <i>{{ product.brand }}</i>
             <p>{{ product.description }}</p>
             <p class="price">${{ product.price }}</p>
-            <button class="button is-success">Add to Cart</button>
+            <button class="button is-success" @click="addToCart(product)">Add to Cart</button>
         </div>
     </div>
 </template>
+
 <style scoped>
 h3 {
     font-weight: bold;
 }
 
 i {
-  color: #888;
+    color: #888;
 }
 
 .price {
-  color: chocolate;
-  font-size: 2em;
-  font-weight: bold;
-  float: right;
+    color: chocolate;
+    font-size: 2em;
+    font-weight: bold;
+    float: right;
 }
 </style>
