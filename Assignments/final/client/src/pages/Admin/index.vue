@@ -1,0 +1,54 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { getAllUsers, type User } from '../../models/users';
+
+// Reactive property to store the users
+const users = ref<User[]>([]);
+
+// Fetch the user data when the component is mounted
+onMounted(() => {
+  users.value = getAllUsers();
+});
+</script>
+
+<template>
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><RouterLink to="../">Home Page</RouterLink></li>
+    <li><RouterLink to="./">Admin</RouterLink></li>
+    <li><RouterLink to="./">Users</RouterLink></li>
+  </ul>
+</nav>
+  <div>
+    <h1>User Information</h1>
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>Profile Picture</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Admin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.username">
+          <td><img :src="user.profilePicture" alt="Profile Picture" width="50" height="50" /></td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<style scoped>
+.table {
+  margin-top: 20px;
+}
+</style>

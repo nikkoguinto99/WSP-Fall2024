@@ -5,8 +5,7 @@
 
 <template>
   <div>
-    <h1>Friends List</h1>
-    <p>This is a test.</p>
+    <h1>Please log in to view this page</h1>
   </div>
 </template>
 

@@ -1,18 +1,26 @@
 [
-  {
-    "name": "Nicholas Guinto",
-    "link": "/"
-  },
-  {
-    "name": "Monty Oum",
-    "link": "/"
-  },
-  {
-    "name": "Blake Belladonna",
-    "link": "/"
-  },
-  {
-    "name": "Other User",
-    "link": "/"
-  }
-]
+    {
+      "profilePicture": "https://example.com/profiles/user1.jpg",
+      "firstName": "Nicholas",
+      "lastName": "Guinto",
+      "email": "guinton1@newpaltz.edu",
+      "username": "itsnikkoguinto",
+      "isAdmin": true
+    },
+    {
+      "profilePicture": "https://example.com/profiles/user2.jpg",
+      "firstName": "Hailey",
+      "lastName": "Terwilliger",
+      "email": "terwillh1@newpaltz.edu",
+      "username": "HailzTerwillz",
+      "isAdmin": false
+    },
+    {
+      "profilePicture": "https://example.com/profiles/user3.jpg",
+      "firstName": "Monty",
+      "lastName": "Oum",
+      "email": "moum@rt.com",
+      "username": "TheMontyOum",
+      "isAdmin": false
+    }
+  ]

@@ -14,7 +14,7 @@ const isOpen = ref(false)
         <!-- Home Button is linked to icon similar to how Bulma Icon links to bulma.io-->
     <RouterLink to="/">
     <a class="navbar-item">
-      <img src="../assets/logo.png">
+      <img class="homeimg" src="../assets/logo.png"> Home
     </a></RouterLink>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -28,7 +28,7 @@ const isOpen = ref(false)
 
   <div class="navbar-menu" :class="{ 'is-active': isOpen }">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a class="navbar-item has-text-black">
         <i class="fas fa-user"></i>
         <RouterLink to="/activity">My Activity</RouterLink>
       </a>
@@ -83,9 +83,7 @@ const isOpen = ref(false)
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
-            <strong>Admin</strong>
-          </a>
+
           <a class="button is-primary">
             <RouterLink to="/signup"><strong>Sign up</strong></RouterLink>
           </a>
@@ -114,6 +112,24 @@ const isOpen = ref(false)
         </div>
       </div>
 
+      <div class="navbar-item has-dropdown is-hoverable">
+            <a class="button is-white">
+          <!-- eslint-disable-next-line vue/no-parsing-error -->
+          Admin&nbsp
+          <i class="fas fa-chevron-down"></i>
+        </a>
+
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <RouterLink to="/Admin/">Users</RouterLink>
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+            Projects List
+          </a>
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -121,12 +137,28 @@ const isOpen = ref(false)
   </div>
 </nav>
   </div>
+
+  <!--
+  <a class="button is-primary" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+            <strong>Admin</strong>
+          </a>
+  -->
 </template>
 
 <style scoped>
   .router-link-active {
-
     font-weight: bold;
     border-bottom: 2px solid blue;
+    color: black
   }
+
+  .homeimg {
+    margin-top: 5px;
+  }
+
+  .navbar-item {
+    color: black;
+    text-decoration: none;
+  }
+
 </style>

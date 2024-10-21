@@ -5,9 +5,12 @@
 
 <template>
   <div>
-    <h1>Search</h1>
-    <p>This is a test.</p>
+
+    <div class="input-wrapper">
+      <input class="input" type="text" placeholder="Search for Users" />
+    </div>
   </div>
+
 </template>
 
 <style scoped>
