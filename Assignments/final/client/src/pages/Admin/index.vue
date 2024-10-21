@@ -22,6 +22,7 @@ onMounted(() => {
 </nav>
   <div>
     <h1>User Information</h1>
+    <button class="button is-primary">Add New User</button>
     <table class="table is-striped is-fullwidth">
       <thead>
         <tr>
@@ -31,6 +32,7 @@ onMounted(() => {
           <th>Email</th>
           <th>Username</th>
           <th>Admin</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +42,11 @@ onMounted(() => {
           <td>{{ user.lastName }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.username }}</td>
-          <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
+            <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
+            <td>
+            <button class="button is-small is-info">Edit</button>
+            <button class="button is-small is-danger">Remove</button>
+            </td>
         </tr>
       </tbody>
     </table>
