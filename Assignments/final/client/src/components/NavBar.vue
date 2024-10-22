@@ -1,12 +1,32 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
+import { getAllUsers, type User } from '../models/users';
 
+// Reactive property to store the users
+const users = ref<User[]>([]);
+
+// Reactive property to store the current user
+const currentUser = ref<User | null>(null);
+
+// Fetch the user data when the component is mounted
+onMounted(() => {
+  users.value = getAllUsers();
+});
+
+//State Variables
 const isOpen = ref(false)
 const isCartOpen = ref(false)
+
+//Sign-in Method
+const signIn = (user: User) => {
+  currentUser.value = user;
+  console.log(`Signed in as ${user.firstName}`);
+  // Implement your sign-in logic here, e.g., update the store or make an API call
+}
 </script>
 
 <template>
@@ -111,18 +131,12 @@ const isCartOpen = ref(false)
 
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
-            <RouterLink to="/activity">Nicholas Guinto</RouterLink>
-          </a>
-          <a class="navbar-item">
-            <RouterLink to="/activity">Hailey Terwilliger</RouterLink>
-          </a>
-          <a class="navbar-item">
-            <RouterLink to ="/activity">Monty Oum</RouterLink>
+          <a v-for="user in users" :key="user.firstName" class="navbar-item" @click="signIn(user)">
+            {{ user.firstName }} {{ user.lastName }}
           </a>
           <hr class="navbar-divider">
           <a class="navbar-item">
-            <RouterLink to ="/Login">Other User</RouterLink>
+            <RouterLink to="/login">Other Login</RouterLink>
           </a>
         </div>
       </div>
@@ -160,6 +174,7 @@ const isCartOpen = ref(false)
   <FlyoutPanel :is-open="isCartOpen">
    <ShoppingCart />
   </FlyoutPanel>
+
 </nav>
   </div>
 </template>
