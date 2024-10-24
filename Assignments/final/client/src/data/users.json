@@ -1,26 +1,47 @@
 [
-    {
-      "profilePicture": "https://example.com/profiles/user1.jpg",
-      "firstName": "Nicholas",
-      "lastName": "Guinto",
-      "email": "guinton1@newpaltz.edu",
-      "username": "itsnikkoguinto",
-      "isAdmin": true
-    },
-    {
-      "profilePicture": "https://example.com/profiles/user2.jpg",
-      "firstName": "Hailey",
-      "lastName": "Terwilliger",
-      "email": "terwillh1@newpaltz.edu",
-      "username": "HailzTerwillz",
-      "isAdmin": false
-    },
-    {
-      "profilePicture": "https://example.com/profiles/user3.jpg",
-      "firstName": "Monty",
-      "lastName": "Oum",
-      "email": "moum@rt.com",
-      "username": "TheMontyOum",
-      "isAdmin": false
-    }
-  ]
+  {
+    "id": 1,
+    "profilePicture": "https://example.com/profiles/user1.jpg",
+    "firstName": "Nicholas",
+    "lastName": "Guinto",
+    "email": "guinton1@newpaltz.edu",
+    "username": "itsnikkoguinto",
+    "isAdmin": true
+  },
+  {
+    "id": 2,
+    "profilePicture": "https://example.com/profiles/user2.jpg",
+    "firstName": "Hailey",
+    "lastName": "Terwilliger",
+    "email": "terwillh1@newpaltz.edu",
+    "username": "HailzTerwillz",
+    "isAdmin": false
+  },
+  {
+    "id": 3,
+    "profilePicture": "https://example.com/profiles/user3.jpg",
+    "firstName": "Monty",
+    "lastName": "Oum",
+    "email": "moum@rt.com",
+    "username": "TheMontyOum",
+    "isAdmin": false
+  },
+  {
+    "id": 4,
+    "profilePicture": "../assets/photos/dmartinez_c.png",
+    "firstName": "David",
+    "lastName": "Martinez",
+    "email": "dmartinez@nc.com",
+    "username": "DavidMartinez",
+    "isAdmin": false
+  },
+  {
+    "id": 4,
+    "profilePicture": "../assets/photos/dmartinez_c.png",
+    "firstName": "Jared",
+    "lastName": "Beltran",
+    "email": "dmartinez@nc.com",
+    "username": "DavidMartinez",
+    "isAdmin": false
+  }
+]

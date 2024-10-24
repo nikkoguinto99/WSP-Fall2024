@@ -1,11 +1,18 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<script setup lang="ts">
+<script lang="ts">
+import PostModal from '@/components/workoutForm.vue';
 
+export default {
+  name: 'CreatePostPage',
+  components: {
+    PostModal,
+  },
+};
 </script>
 
 <template>
   <div>
-    <h1>Please log in to view this page</h1>
+    <h1>Create a New Post</h1>
+    <PostModal />
   </div>
 </template>
 

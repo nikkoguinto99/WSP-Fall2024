@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
 import { getAllUsers, type User } from '../models/users';
@@ -17,16 +17,22 @@ onMounted(() => {
   users.value = getAllUsers();
 });
 
-//State Variables
-const isOpen = ref(false)
-const isCartOpen = ref(false)
+// State Variables
+const isOpen = ref(false);
+const isCartOpen = ref(false);
 
-//Sign-in Method
+// Sign-in Method
 const signIn = (user: User) => {
   currentUser.value = user;
   console.log(`Signed in as ${user.firstName}`);
-  // Implement your sign-in logic here, e.g., update the store or make an API call
-}
+  // Additional logic if needed
+};
+
+// Logout Method
+const logOut = () => {
+  currentUser.value = null;
+  console.log('Logged out');
+};
 </script>
 
 <template>
@@ -35,10 +41,9 @@ const signIn = (user: User) => {
       <div class="container">
       <div class="navbar-brand">
         <!-- Home Button is linked to icon similar to how Bulma Icon links to bulma.io-->
-    <RouterLink to="/">
-    <a class="navbar-item">
+    <RouterLink class="navbar-item"  to="/">
       <img class="homeimg" src="../assets/logo.png"> <label for="" class="label">Home</label>
-    </a></RouterLink>
+    </RouterLink>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
     :class="{ 'is-active': isOpen}" @click="isOpen =!isOpen">
@@ -51,33 +56,25 @@ const signIn = (user: User) => {
 
   <div class="navbar-menu" :class="{ 'is-active': isOpen }">
     <div class="navbar-start">
-      <a class="navbar-item has-text-black">
-        <RouterLink to="/activity"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/activity"><label for="navbar-item" class="label">
           <i class="fas fa-user"></i>
           My Activity
         </label></RouterLink>
-      </a>
 
-      <a class="navbar-item">
-        <RouterLink to="/statistics"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/statistics"><label for="navbar-item" class="label">
           <i class="fas fa-chart-line"></i>
           Statistics
         </label></RouterLink>
-      </a>
 
-      <a class="navbar-item">
-        <RouterLink to="/friends"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/friends"><label for="navbar-item" class="label">
           <i class="fas fa-users"></i>
           Friends' Activity
         </label></RouterLink>
-      </a>
 
-      <a class="navbar-item">
-        <RouterLink to="/search"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/search"><label for="navbar-item" class="label">
           <i class="fas fa-search"></i>
           Search
         </label></RouterLink>
-      </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
@@ -106,7 +103,7 @@ const signIn = (user: User) => {
       </a>
 
       <a class="navbar-item">
-        <RouterLink to="/products">Samurai Shop</RouterLink>
+        <RouterLink to="/Admin">Samurai Shop</RouterLink>
       </a>
         </div>
       </div>
@@ -114,63 +111,79 @@ const signIn = (user: User) => {
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-
-          <a class="button is-primary">
-            <RouterLink to="/signup"><label for="navbar-item" class="label">
-              <strong>Sign up</strong>
-            </label></RouterLink>
-          </a>
-          <div class="navbar-item has-dropdown is-hoverable">
-        <a class="button is-white">
-          <!-- eslint-disable-next-line vue/no-parsing-error -->
-          Login&nbsp
-          <i class="fas fa-chevron-down"></i>
-        </a>
+            <div class="navbar-item">
+              <div class="buttons">
+                <!-- Conditionally show based on currentUser -->
+                <template v-if="currentUser">
+                  <!-- Show user profile and logout button -->
 
 
-        <div class="navbar-dropdown">
-          <a v-for="user in users" :key="user.firstName" class="navbar-item" @click="signIn(user)">
-            {{ user.firstName }} {{ user.lastName }}
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            <RouterLink to="/login">Other Login</RouterLink>
-          </a>
+                    Welcome, {{ currentUser.firstName }} {{ currentUser.lastName }}
+
+
+                  <a class="button is-danger" @click="logOut">
+                    <strong>Log out</strong>
+                  </a>
+                </template>
+
+                <template v-else>
+                  <!-- Show login and sign-up buttons -->
+                  <a class="button is-primary">
+                    <RouterLink to="/signup"><label for="navbar-item" class="label">
+                      <strong>Sign up</strong>
+                    </label></RouterLink>
+                  </a>
+
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="button is-white">
+                      <!-- eslint-disable-next-line vue/no-parsing-error -->
+                      Login&nbsp
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a v-for="user in users" :key="user.firstName" class="navbar-item" @click="signIn(user)">
+                        {{ user.firstName }} {{ user.lastName }}
+                      </a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item">
+                        <RouterLink to="/login">Other Login</RouterLink>
+                      </a>
+                    </div>
+                  </div>
+                </template>
+
+                <div>
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="button is-white">
+                      <!-- eslint-disable-next-line vue/no-parsing-error -->
+                      Admin&nbsp
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        <RouterLink to="/Admin/">Users</RouterLink>
+                      </a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+                        Projects List
+                      </a>
+                      <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
+                        Midterm Example
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}" @click="isCartOpen = !isCartOpen">
+                  <span class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-            <a class="button is-white">
-          <!-- eslint-disable-next-line vue/no-parsing-error -->
-          Admin&nbsp
-          <i class="fas fa-chevron-down"></i>
-        </a>
-
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            <RouterLink to="/Admin/">Users</RouterLink>
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
-            Projects List
-          </a>
-        </div>
-      </div>
-      <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}"
-      @click="isCartOpen = !isCartOpen">
-        <span class="icon">
-          <i class="fas fa-shopping-cart"></i>
-          </span>
-
-      </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
   <FlyoutPanel :is-open="isCartOpen">
    <ShoppingCart />
   </FlyoutPanel>
