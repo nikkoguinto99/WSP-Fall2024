@@ -73,9 +73,10 @@ export default defineComponent({
           <form @submit.prevent="submitForm">
               <div class="control">
                 <div class="field">
-                  <label class="label">Title</label>
+                  <label class="label">Caption</label>
                   <div class="control">
-                    <input class="input" type="text">
+                    <input class="input" type="textbox" maxlength="48">
+                    <p class="help">{{ postText.length }}/48</p>
                   </div>
                 </div>
               </div>
@@ -113,9 +114,11 @@ export default defineComponent({
                 <div class="select">
                 <select>
                   <option>Strength</option>
+                  <option>Cardio</option>
                   <option>Endurance</option>
                   <option>Aerobic</option>
                   <option>Stretching</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>

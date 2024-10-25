@@ -4,11 +4,12 @@ import { ref, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
-import { getAllUsers, type User } from '../models/users';
+import { type User } from '../models/users';
+import usersData from '../data/users.json';
 
 // Reactive property to store the users
 const users = ref<User[]>([]);
-
+const getAllUsers = () => usersData.users;
 // Reactive property to store the current user
 const currentUser = ref<User | null>(null);
 
@@ -66,9 +67,9 @@ const logOut = () => {
           Statistics
         </label></RouterLink>
 
-        <RouterLink class="navbar-item" to="/friends"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/posting"><label for="navbar-item" class="label">
           <i class="fas fa-users"></i>
-          Friends' Activity
+          User Posts
         </label></RouterLink>
 
         <RouterLink class="navbar-item" to="/search"><label for="navbar-item" class="label">
@@ -103,7 +104,7 @@ const logOut = () => {
       </a>
 
       <a class="navbar-item">
-        <RouterLink to="/Admin">Samurai Shop</RouterLink>
+        <RouterLink to="/Products">Samurai Shop</RouterLink>
       </a>
         </div>
       </div>

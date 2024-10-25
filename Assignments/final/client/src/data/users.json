@@ -1,4 +1,5 @@
-[
+{
+"users":[
   {
     "id": 1,
     "profilePicture": "https://example.com/profiles/user1.jpg",
@@ -28,20 +29,12 @@
   },
   {
     "id": 4,
-    "profilePicture": "../assets/photos/dmartinez_c.png",
+    "profilePicture": "@/assets/photos/dmartinez_c.png",
     "firstName": "David",
     "lastName": "Martinez",
     "email": "dmartinez@nc.com",
     "username": "DavidMartinez",
     "isAdmin": false
-  },
-  {
-    "id": 4,
-    "profilePicture": "../assets/photos/dmartinez_c.png",
-    "firstName": "Jared",
-    "lastName": "Beltran",
-    "email": "dmartinez@nc.com",
-    "username": "DavidMartinez",
-    "isAdmin": false
   }
 ]
+}

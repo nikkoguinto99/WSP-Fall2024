@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import { getAllUsers, type User } from '../../models/users';
+import { type User } from '../../models/users';
+
+import usersData from '../../data/users.json';
+
+const getAllUsers = () => usersData.users;
+
 
 // Reactive property to store the users
 const users = ref<User[]>([]);
@@ -30,7 +35,7 @@ const isAdmin = computed(() => currentUser.value.isAdmin);
   </nav>
   <div>
     <h1>User Information</h1>
-    <div v-if="isAdmin">
+    <div v-if="!isAdmin">
       <button class="button is-primary">Add New User</button>
       <table class="table is-striped is-fullwidth">
         <thead>
