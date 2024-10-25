@@ -1,18 +1,40 @@
-[
+{
+"users":[
   {
-    "name": "Nicholas Guinto",
-    "link": "/"
+    "id": 1,
+    "profilePicture": "https://example.com/profiles/user1.jpg",
+    "firstName": "Nicholas",
+    "lastName": "Guinto",
+    "email": "guinton1@newpaltz.edu",
+    "username": "itsnikkoguinto",
+    "isAdmin": true
   },
   {
-    "name": "Monty Oum",
-    "link": "/"
+    "id": 2,
+    "profilePicture": "https://example.com/profiles/user2.jpg",
+    "firstName": "Hailey",
+    "lastName": "Terwilliger",
+    "email": "terwillh1@newpaltz.edu",
+    "username": "HailzTerwillz",
+    "isAdmin": false
   },
   {
-    "name": "Blake Belladonna",
-    "link": "/"
+    "id": 3,
+    "profilePicture": "https://example.com/profiles/user3.jpg",
+    "firstName": "Monty",
+    "lastName": "Oum",
+    "email": "moum@rt.com",
+    "username": "TheMontyOum",
+    "isAdmin": false
   },
   {
-    "name": "Other User",
-    "link": "/"
+    "id": 4,
+    "profilePicture": "@/assets/photos/dmartinez_c.png",
+    "firstName": "David",
+    "lastName": "Martinez",
+    "email": "dmartinez@nc.com",
+    "username": "DavidMartinez",
+    "isAdmin": false
   }
 ]
+}
