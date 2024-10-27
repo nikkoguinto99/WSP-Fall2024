@@ -43,7 +43,7 @@ const isCartOpen = ref(false);
           Statistics
         </label></RouterLink>
 
-        <RouterLink class="navbar-item" to="/posting"><label for="navbar-item" class="label">
+        <RouterLink class="navbar-item" to="/postingPage"><label for="navbar-item" class="label">
           <i class="fas fa-users"></i>
           User Posts
         </label></RouterLink>
@@ -105,9 +105,7 @@ const isCartOpen = ref(false);
                     </a>
                     <div class="navbar-dropdown">
                       <hr class="navbar-divider">
-                      <a class="navbar-item">
-                        <RouterLink to="/login">Other Login</RouterLink>
-                      </a>
+                        <RouterLink class="navbar-item" to="/login">Other Login</RouterLink>
                     </div>
                   </div>
 
@@ -119,9 +117,9 @@ const isCartOpen = ref(false);
                       <i class="fas fa-chevron-down"></i>
                     </a>
                     <div class="navbar-dropdown">
-                      <a class="navbar-item">
-                        <RouterLink to="/Admin/">Users</RouterLink>
-                      </a>
+
+                        <RouterLink class="navbar-item" to="/Admin/">Users</RouterLink>
+
                       <hr class="navbar-divider">
                       <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
                         Projects List
