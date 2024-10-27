@@ -1,5 +1,4 @@
-{
-"users":[
+[
   {
     "id": 1,
     "profilePicture": "https://example.com/profiles/user1.jpg",
@@ -29,12 +28,11 @@
   },
   {
     "id": 4,
-    "profilePicture": "@/assets/photos/dmartinez_c.png",
+    "profilePicture": "dmartinez_c.png",
     "firstName": "David",
     "lastName": "Martinez",
     "email": "dmartinez@nc.com",
-    "username": "DavidMartinez",
+    "username": "DavidMartinez2077",
     "isAdmin": false
   }
 ]
-}

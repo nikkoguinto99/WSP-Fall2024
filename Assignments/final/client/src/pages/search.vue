@@ -3,7 +3,7 @@
 import { ref, computed } from 'vue';
 import usersData from '../data/users.json';
 
-const users = ref(usersData.users);
+const users = ref(usersData);
 const searchQuery = ref('');
 
 const filteredUsers = computed(() => {
