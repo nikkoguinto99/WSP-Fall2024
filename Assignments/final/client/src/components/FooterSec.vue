@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="">
-    <footer class="footer">
+  <div class="footer mt-6 pb-0">
+    <footer class="footer mt-6">
   <div class="content has-text-centered">
     <p>
       <strong>Samurai Fitness</strong> by <a href="https://github.com/nikkoguinto99" target="_blank">Nicholas Guinto</a>.

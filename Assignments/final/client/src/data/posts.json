@@ -1,47 +1,63 @@
-{
-    "posts": [
+[
         {
+            "type": "Cardio",
             "caption": "Walked around campus!",
-            "image": "https://example.com/posts/post1.jpg",
+            "image": "Walking.jpg",
             "likes": 10,
             "comments": 2,
-            "timestamp": "2022-03-01T12:00:00Z",
+            "date": "Oct 23 2024",
             "user": {
                 "id": 1,
-                "profilePicture": "https://example.com/profiles/user1.jpg",
+                "profilePicture": "lighterhold_cropped.png",
                 "firstName": "Nicholas",
                 "lastName": "Guinto",
                 "username": "itsnikkoguinto"
             }
         },
         {
+            "type": "Cardio",
             "caption": "Had a great time at the beach!",
-            "image": "https://example.com/posts/post2.jpg",
+            "image": "beach.jpg",
             "likes": 20,
             "comments": 5,
-            "timestamp": "2022-03-02T12:00:00Z",
+            "date": "Oct 15 2024",
             "user": {
                 "id": 2,
-                "profilePicture": "https://example.com/profiles/user2.jpg",
+                "profilePicture": "hailz.png",
                 "firstName": "Hailey",
                 "lastName": "Terwilliger",
                 "username": "HailzTerwillz"
             }
         },
         {
-            "caption": "Went to the city!",
-            "image": "https://example.com/posts/post3.jpg",
+            "type": "Aerobic",
+            "caption": "Played some Dance Dance Revolution!",
+            "image": "ddr.png",
             "likes": 15,
             "comments": 3,
-            "timestamp": "2022-03-03T12:00:00Z",
+            "date": "Jul 13 2012",
             "user": {
                 "id": 3,
-                "profilePicture": "https://example.com/profiles/user3.jpg",
+                "profilePicture": "montyoum.png",
                 "firstName": "Monty",
                 "lastName": "Oum",
                 "username": "TheMontyOum"
             }
+        },
+        {
+            "type": "Endurance",
+            "caption": "Ran a marathon!",
+            "image": "david_nightcity.jpg",
+            "likes": 30,
+            "comments": 10,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 4,
+                "profilePicture": "dmartinez_c_cropped.png",
+                "firstName": "David",
+                "lastName": "Martinez",
+                "username": "DavidMartinez2077"
+            }
         }
 
-    ]
-}
+]

@@ -1,39 +1,15 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
-import { type User } from '../models/users';
-import usersData from '../data/users.json';
 
-// Reactive property to store the users
-const users = ref<User[]>([]);
-const getAllUsers = () => usersData.users;
-// Reactive property to store the current user
-const currentUser = ref<User | null>(null);
-
-// Fetch the user data when the component is mounted
-onMounted(() => {
-  users.value = getAllUsers();
-});
 
 // State Variables
 const isOpen = ref(false);
 const isCartOpen = ref(false);
 
-// Sign-in Method
-const signIn = (user: User) => {
-  currentUser.value = user;
-  console.log(`Signed in as ${user.firstName}`);
-  // Additional logic if needed
-};
-
-// Logout Method
-const logOut = () => {
-  currentUser.value = null;
-  console.log('Logged out');
-};
 </script>
 
 <template>
@@ -114,21 +90,7 @@ const logOut = () => {
     <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <!-- Conditionally show based on currentUser -->
-                <template v-if="currentUser">
-                  <!-- Show user profile and logout button -->
 
-
-                    Welcome, {{ currentUser.firstName }} {{ currentUser.lastName }}
-
-
-                  <a class="button is-danger" @click="logOut">
-                    <strong>Log out</strong>
-                  </a>
-                </template>
-
-                <template v-else>
-                  <!-- Show login and sign-up buttons -->
                   <a class="button is-primary">
                     <RouterLink to="/signup"><label for="navbar-item" class="label">
                       <strong>Sign up</strong>
@@ -142,16 +104,12 @@ const logOut = () => {
                       <i class="fas fa-chevron-down"></i>
                     </a>
                     <div class="navbar-dropdown">
-                      <a v-for="user in users" :key="user.firstName" class="navbar-item" @click="signIn(user)">
-                        {{ user.firstName }} {{ user.lastName }}
-                      </a>
                       <hr class="navbar-divider">
                       <a class="navbar-item">
                         <RouterLink to="/login">Other Login</RouterLink>
                       </a>
                     </div>
                   </div>
-                </template>
 
                 <div>
                   <div class="navbar-item has-dropdown is-hoverable">

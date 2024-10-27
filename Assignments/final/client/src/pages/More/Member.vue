@@ -16,7 +16,7 @@
   <div class="card-image">
     <figure class="image is-4by3">
       <img
-        src="../../assets/photos/dmartinez_c.png"
+        src="../../assets/photos/Memberships/dmartinez_c.png"
         alt="Placeholder image"
       />
     </figure>
@@ -44,7 +44,7 @@
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
-                      src="../../assets/photos/asmasher_c.png"
+                      src="../../assets/photos/Memberships/asmasher_c.png"
                       alt="Placeholder image"
                     />
                   </figure>
@@ -75,7 +75,7 @@
         <div class="card-image">
           <figure class="image is-4by3">
             <img
-              src="../../assets/photos/jsilverhand_c.png"
+              src="../../assets/photos/Memberships/jsilverhand_c.png"
               alt="Placeholder image"
             />
           </figure>
