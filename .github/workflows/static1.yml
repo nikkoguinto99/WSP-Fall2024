@@ -41,8 +41,8 @@ jobs:
       - name: build vue
         run: | 
           cd Assignments/final/client
-          npm install
-          npm run build
+          pnpm install
+          pnpm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the dist directory as an artifact
-          path: './Assignments/final/Client/dist'
+          path: './Client/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
