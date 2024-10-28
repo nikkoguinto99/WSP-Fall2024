@@ -1,38 +1,64 @@
-[
-  {
-    "id": 1,
-    "profilePicture": "https://example.com/profiles/user1.jpg",
-    "firstName": "Nicholas",
-    "lastName": "Guinto",
-    "email": "guinton1@newpaltz.edu",
-    "username": "itsnikkoguinto",
-    "isAdmin": true
-  },
-  {
-    "id": 2,
-    "profilePicture": "https://example.com/profiles/user2.jpg",
-    "firstName": "Hailey",
-    "lastName": "Terwilliger",
-    "email": "terwillh1@newpaltz.edu",
-    "username": "HailzTerwillz",
-    "isAdmin": false
-  },
-  {
-    "id": 3,
-    "profilePicture": "https://example.com/profiles/user3.jpg",
-    "firstName": "Monty",
-    "lastName": "Oum",
-    "email": "moum@rt.com",
-    "username": "TheMontyOum",
-    "isAdmin": false
-  },
-  {
-    "id": 4,
-    "profilePicture": "dmartinez_c.png",
-    "firstName": "David",
-    "lastName": "Martinez",
-    "email": "dmartinez@nc.com",
-    "username": "DavidMartinez2077",
-    "isAdmin": false
-  }
-]
+{
+  "users": [
+    {
+      "username": "itsnikkoguinto",
+      "password": "Nikko",
+      "firstName": "Nicholas",
+      "lastName": "Guinto",
+      "dob": "1999-03-16",
+      "profilePicture": "nikko.png",
+      "membership": "Member+",
+      "isAdmin": true
+    },
+    {
+      "username": "HailzTerwillz",
+      "password": "Hailey",
+      "firstName": "Hailey",
+      "lastName": "Guinto",
+      "dob": "2003-04-09",
+      "profilePicture": "hailz.png",
+      "membership": "Member",
+      "isAdmin": false
+    },
+    {
+      "username": "TheMontyOum",
+      "password": "Monty",
+      "firstName": "Monty",
+      "lastName": "Oum",
+      "dob": "1981-06-22",
+      "profilePicture": "monty.png",
+      "membership": "Member+",
+      "isAdmin": false
+    },
+    {
+      "username": "DavidMartinez2077",
+      "password": "David",
+      "firstName": "David",
+      "lastName": "Martinez",
+      "dob": "2058-01-18",
+      "profilePicture": "david.png",
+      "membership": "Free Member",
+      "isAdmin": false
+    },
+    {
+      "username": "Bmblb09",
+      "password": "Blake",
+      "firstName": "Blake",
+      "lastName": "Belladonna",
+      "dob": "2000-01-19",
+      "profilePicture": "blake.png",
+      "membership": "Member+",
+      "isAdmin": false
+    },
+    {
+      "username": "Shy Cat",
+      "password": "Komi",
+      "firstName": "Komi",
+      "lastName": "Shouko",
+      "dob": "2002-12-25",
+      "profilePicture": "komi.png",
+      "membership": "Member+",
+      "isAdmin": false
+    }
+  ]
+}

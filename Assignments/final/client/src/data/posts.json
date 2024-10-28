@@ -8,7 +8,7 @@
             "date": "Oct 23 2024",
             "user": {
                 "id": 1,
-                "profilePicture": "lighterhold_cropped.png",
+                "profilePicture": "nikko.png",
                 "firstName": "Nicholas",
                 "lastName": "Guinto",
                 "username": "itsnikkoguinto"
@@ -45,18 +45,48 @@
             }
         },
         {
+            "type": "Cardio",
+            "caption": "Explored a brand new world!",
+            "image":  "blake-walk.png",
+            "likes": 25,
+            "comments": 7,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 5,
+                "profilePicture": "blake.png",
+                "firstName": "Blake",
+                "lastName": "Belladonna",
+                "username": "Bmblbee0119"
+            }
+        },
+        {
             "type": "Endurance",
-            "caption": "Ran a marathon!",
+            "caption": "Ran across the streets of NC!",
             "image": "david_nightcity.jpg",
             "likes": 30,
             "comments": 10,
             "date": "Oct 23 2024",
             "user": {
                 "id": 4,
-                "profilePicture": "dmartinez_c_cropped.png",
+                "profilePicture": "david.png",
                 "firstName": "David",
                 "lastName": "Martinez",
                 "username": "DavidMartinez2077"
+            }
+        },
+        {
+            "type": "Cardio",
+            "caption": "友達と体育祭を楽しみました！",
+            "image": "sportsday.jpg",
+            "likes": 35,
+            "comments": 12,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 6,
+                "profilePicture": "komi.png",
+                "firstName": "Komi",
+                "lastName": "Shouko",
+                "username": "Shy Cat64"
             }
         }
 

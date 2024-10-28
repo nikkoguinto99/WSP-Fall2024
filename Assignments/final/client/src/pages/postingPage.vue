@@ -1,15 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
+import { PostsData } from '../models/posting.ts';
+import postCard from '../components/postCard.vue';
 import postData from '@/data/posts.json';
 
-import post from '@/components/postCard.vue';
+const posts = ref<PostsData>(postData);
 
-defineProps({
-  limit: Number
-})
-
-const posts = ref(postData);
 console.log(posts.value); //Tests to see if posts are being loaded correctly
 </script>
 
@@ -19,13 +16,16 @@ console.log(posts.value); //Tests to see if posts are being loaded correctly
       <div class="cell"></div>
         <div class="cell">
 
-          <post class="card" v-for="post in posts.slice(0, limit || posts.length)" :key="post.date" :post="post"/>
 
+          <div class="shelf">
+            <postCard v-for="post in posts" :key="post.id" :post="post" />
 
+          </div>
 
         </div>
       </div>
     </div>
+
 
 </template>
 

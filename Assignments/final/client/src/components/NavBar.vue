@@ -1,59 +1,68 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { ref, computed } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
-
+import UserStore from '@/models/userStore.ts';
 
 // State Variables
 const isOpen = ref(false);
 const isCartOpen = ref(false);
+const router = useRouter();
 
+// Computed property to access user from UserStore
+const user = computed(() => UserStore.state.user);
+
+const logout = () => {
+  localStorage.removeItem('user'); // Clear user data
+  UserStore.clearUser(); // Clear user state in store
+  router.push('/'); // Redirect to Home page
+};
 </script>
+
+
 
 <template>
   <div>
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="container">
-      <div class="navbar-brand">
-        <!-- Home Button is linked to icon similar to how Bulma Icon links to bulma.io-->
-    <RouterLink class="navbar-item"  to="/">
-      <img class="homeimg" src="../assets/logo.png"> <label for="" class="label">Home</label>
-    </RouterLink>
+        <div class="navbar-brand">
+          <RouterLink class="navbar-item" to="/">
+            <img class="homeimg" src="../assets/logo.png"> <label for="" class="label">Home</label>
+          </RouterLink>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-    :class="{ 'is-active': isOpen}" @click="isOpen =!isOpen">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+             :class="{ 'is-active': isOpen}" @click="isOpen = !isOpen">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
-  <div class="navbar-menu" :class="{ 'is-active': isOpen }">
-    <div class="navbar-start">
-        <RouterLink class="navbar-item" to="/activity"><label for="navbar-item" class="label">
-          <i class="fas fa-user"></i>
-          My Activity
-        </label></RouterLink>
+        <div class="navbar-menu" :class="{ 'is-active': isOpen }">
+          <div class="navbar-start">
+            <RouterLink class="navbar-item" to="/activity"><label for="navbar-item" class="label">
+              <i class="fas fa-user"></i>
+              My Activity
+            </label></RouterLink>
 
-        <RouterLink class="navbar-item" to="/statistics"><label for="navbar-item" class="label">
-          <i class="fas fa-chart-line"></i>
-          Statistics
-        </label></RouterLink>
+            <RouterLink class="navbar-item" to="/statistics"><label for="navbar-item" class="label">
+              <i class="fas fa-chart-line"></i>
+              Statistics
+            </label></RouterLink>
 
-        <RouterLink class="navbar-item" to="/postingPage"><label for="navbar-item" class="label">
-          <i class="fas fa-users"></i>
-          User Posts
-        </label></RouterLink>
+            <RouterLink class="navbar-item" to="/postingPage"><label for="navbar-item" class="label">
+              <i class="fas fa-users"></i>
+              User Posts
+            </label></RouterLink>
 
-        <RouterLink class="navbar-item" to="/search"><label for="navbar-item" class="label">
-          <i class="fas fa-search"></i>
-          Search
-        </label></RouterLink>
-
-      <div class="navbar-item has-dropdown is-hoverable">
+            <RouterLink class="navbar-item" to="/search"><label for="navbar-item" class="label">
+              <i class="fas fa-search"></i>
+              Search
+            </label></RouterLink>
+            <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           <label for="navbar-item" class="label">
             More
@@ -84,70 +93,43 @@ const isCartOpen = ref(false);
       </a>
         </div>
       </div>
+          </div>
 
-    </div>
 
-    <div class="navbar-end">
+          <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
+                <!-- Show login/signup buttons if user is not logged in -->
+                <template v-if="!user">
+                  <RouterLink to="/signup" class="button is-primary">
+                    <strong>Sign up</strong>
+                  </RouterLink>
+                  <RouterLink to="/login" class="button is-white">
+                    Login
+                  </RouterLink>
+                </template>
 
-                  <a class="button is-primary">
-                    <RouterLink to="/signup"><label for="navbar-item" class="label">
-                      <strong>Sign up</strong>
-                    </label></RouterLink>
-                  </a>
-
-                  <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-white">
-                      <!-- eslint-disable-next-line vue/no-parsing-error -->
-                      Login&nbsp
-                      <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="navbar-dropdown">
-                      <hr class="navbar-divider">
-                        <RouterLink class="navbar-item" to="/login">Other Login</RouterLink>
-                    </div>
-                  </div>
-
-                <div>
-                  <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-white">
-                      <!-- eslint-disable-next-line vue/no-parsing-error -->
-                      Admin&nbsp
-                      <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="navbar-dropdown">
-
-                        <RouterLink class="navbar-item" to="/Admin/">Users</RouterLink>
-
-                      <hr class="navbar-divider">
-                      <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
-                        Projects List
-                      </a>
-                      <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
-                        Midterm Example
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}" @click="isCartOpen = !isCartOpen">
-                  <span class="icon">
-                    <i class="fas fa-shopping-cart"></i>
+                <!-- Show welcome message and logout button if user is logged in -->
+                <template v-else>
+                  <span class="navbar-item">
+                    Welcome, {{ user.firstName }}!
                   </span>
-                </button>
+                  <button class="button is-danger" @click="logout">
+                    Logout
+                  </button>
+                </template>
               </div>
             </div>
           </div>
         </div>
       </div>
-  <FlyoutPanel :is-open="isCartOpen">
-   <ShoppingCart />
-  </FlyoutPanel>
-
-</nav>
+      <FlyoutPanel :is-open="isCartOpen">
+        <ShoppingCart />
+      </FlyoutPanel>
+    </nav>
   </div>
 </template>
+
 
 <style scoped>
   .router-link-active {

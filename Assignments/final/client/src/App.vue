@@ -2,7 +2,11 @@
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 import FooterSec from './components/FooterSec.vue';
+import UserStore from './models/userStore.ts'; // Import your user store
+import { provide } from 'vue';
 
+// Provide the UserStore
+provide('UserStore', UserStore);
 </script>
 
 <template>
@@ -22,7 +26,7 @@ import FooterSec from './components/FooterSec.vue';
 body {
   background-color: aliceblue;
 }
-.container-home{
+.container-home {
   background-color: whitesmoke;
   box-shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   min-height: 100vh;
