@@ -11,7 +11,7 @@ export interface Post {
   caption: string;
   image: string;
   likes: number;
-  comments: Comment[];
+  comments: number;
   date: string;
   user: User;
 }

@@ -1,8 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import PostModal from '@/components/workoutForm.vue';
-import userData from '@/data/users.json'; // Adjust the path as necessary
-import postsData from '@/data/posts.json'; // Adjust the path as necessary
+import postsData from '@/data/posts.json';
 
 export default defineComponent({
   name: 'CreatePostPage',
@@ -11,8 +10,8 @@ export default defineComponent({
   },
   setup() {
     const userId = 1; // Replace with the actual logged-in user ID
-    const posts = ref([]);
-    const filteredPosts = ref([]);
+    const posts = ref<{ type: string; caption: string; image: string; likes: number; comments: number; date: string; user: { id: number; profilePicture: string; firstName: string; lastName: string; username: string; }; }[]>([]);
+    const filteredPosts = ref<{ type: string; caption: string; image: string; likes: number; comments: number; date: string; user: { id: number; profilePicture: string; firstName: string; lastName: string; username: string; }; }[]>([]);
 
     // Fetch and filter posts based on the logged-in user's ID
     const fetchPosts = () => {
@@ -21,7 +20,7 @@ export default defineComponent({
     };
 
     // Update the posts when a new post is submitted
-    const updatePosts = (newPost) => {
+    const updatePosts = (newPost: { type: string; caption: string; image: string; likes: number; comments: number; date: string; user: { id: number; profilePicture: string; firstName: string; lastName: string; username: string; }; }) => {
       filteredPosts.value.push(newPost);
     };
 
