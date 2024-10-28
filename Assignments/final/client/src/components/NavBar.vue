@@ -62,7 +62,39 @@ const logout = () => {
               <i class="fas fa-search"></i>
               Search
             </label></RouterLink>
+            <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          <label for="navbar-item" class="label">
+            More
+          </label>
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <RouterLink to="/More/about">About Us</RouterLink>
+          </a>
+          <a class="navbar-item">
+            <RouterLink to="/More/careers">Careers</RouterLink>
+          </a>
+          <a class="navbar-item">
+            <RouterLink to ="/More/contact">Contact us!</RouterLink>
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+        <RouterLink to="/More/member">Memberships</RouterLink>
+      </a>
+
+      <a class="navbar-item">
+        <RouterLink to="/More/testimonial">Testimonials</RouterLink>
+      </a>
+
+      <a class="navbar-item">
+        <RouterLink to="/Products">Samurai Shop</RouterLink>
+      </a>
+        </div>
+      </div>
           </div>
+
 
           <div class="navbar-end">
             <div class="navbar-item">

@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
-defineProps({
-  post: Object
-})
+import type { Post } from '@/models/posts'; // Import Post type from posts model
 
 const getImageUrl = (filename: string) => new URL(`../assets/photos/Posts/${filename}`, import.meta.url).href;
 const getProfileUrl = (filename: string) => new URL(`../assets/photos/Pfps/${filename}`, import.meta.url).href;
 
+const props = defineProps<{
+    post: Post
+}>()
+const { post } = props
 </script>
 
 <template>
