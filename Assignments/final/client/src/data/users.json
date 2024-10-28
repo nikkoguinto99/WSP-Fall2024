@@ -1,6 +1,18 @@
 {
   "users": [
     {
+      "username": "Admin",
+      "password": "Admin",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "email": "admin@samurai-fitness.com",
+      "dob": "2000-01-01",
+      "profilePicture": "admin.png",
+      "membership": "Member+",
+      "isAdmin": true,
+      "id": 0
+    },
+    {
       "username": "itsnikkoguinto",
       "password": "Nikko",
       "firstName": "Nicholas",

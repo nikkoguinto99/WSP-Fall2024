@@ -30,7 +30,6 @@ const getProfileUrl = (filename: string) =>
     <h1>Search Users by Username</h1>
 
     <div class="field">
-      <label class="label">Username</label>
       <div class="control">
         <input
           class="input"

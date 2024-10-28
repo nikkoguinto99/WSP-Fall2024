@@ -11,6 +11,7 @@ interface User {
   profilePicture: string;
   membership: string;
   isAdmin: boolean;
+  id: number;
 }
 
 // Create a reactive state
