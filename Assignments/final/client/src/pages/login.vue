@@ -3,7 +3,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import usersData from '@/data/users.json';
-import UserStore from '@/models/userStore.ts';
+import userStore from '@/models/userStore';
 
 const router = useRouter();
 const username = ref('');
@@ -35,7 +35,7 @@ const handleLogin = () => {
 
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
-      UserStore.setUser(user); // Update the UserStore with the logged-in user
+      userStore.setUser(user); // Update the UserStore with the logged-in user
       router.push('/activity');
     } else {
       errorMessage.value = 'Invalid username or password';

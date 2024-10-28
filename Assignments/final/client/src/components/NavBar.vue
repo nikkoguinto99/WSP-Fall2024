@@ -4,7 +4,7 @@ import { ref, computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
-import UserStore from '@/models/userStore.ts';
+import UserStore from '../models/userStore';
 
 // State Variables
 const isOpen = ref(false);
@@ -19,6 +19,8 @@ const logout = () => {
   UserStore.clearUser(); // Clear user state in store
   router.push('/'); // Redirect to Home page
 };
+
+const getProfileUrl = (filename: string) => new URL(`../assets/photos/Pfps/${filename}`, import.meta.url).href;
 </script>
 
 
@@ -112,12 +114,42 @@ const logout = () => {
                 <!-- Show welcome message and logout button if user is logged in -->
                 <template v-else>
                   <span class="navbar-item">
+                    <figure class="image is-32x32" style="margin-right: 10px;">
+                      <img v-if="user.profilePicture" :src="getProfileUrl(user.profilePicture)" alt="Profile Picture" />
+                    </figure>
                     Welcome, {{ user.firstName }}!
                   </span>
                   <button class="button is-danger" @click="logout">
                     Logout
                   </button>
                 </template>
+
+                <div>
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="button is-white">
+                      <!-- eslint-disable-next-line vue/no-parsing-error -->
+                      Admin&nbsp
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="navbar-dropdown">
+                        <RouterLink class="navbar-item" to="/Admin/">Users</RouterLink>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+                        Projects List
+                      </a>
+                      <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
+                        Midterm Example
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}" @click="isCartOpen = !isCartOpen">
+                  <span class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                </button>
+
               </div>
             </div>
           </div>

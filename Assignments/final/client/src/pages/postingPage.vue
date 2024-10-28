@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PostsData } from '../models/posting.ts';
+import type { PostsData } from '../models/posting';
 import postCard from '../components/postCard.vue';
 import postData from '@/data/posts.json';
 
@@ -18,7 +18,7 @@ console.log(posts.value); //Tests to see if posts are being loaded correctly
 
 
           <div class="shelf">
-            <postCard v-for="post in posts" :key="post.id" :post="post" />
+            <postCard v-for="post in posts" :key="post.user.id" :post="post" />
 
           </div>
 

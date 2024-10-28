@@ -5,60 +5,72 @@
       "password": "Nikko",
       "firstName": "Nicholas",
       "lastName": "Guinto",
+      "email": "guinton1@newpaltz.edu",
       "dob": "1999-03-16",
       "profilePicture": "nikko.png",
       "membership": "Member+",
-      "isAdmin": true
+      "isAdmin": true,
+      "id": 1
     },
     {
       "username": "HailzTerwillz",
       "password": "Hailey",
       "firstName": "Hailey",
-      "lastName": "Guinto",
+      "lastName": "Terwilliger",
+      "email": "hailey@newpaltz.edu",
       "dob": "2003-04-09",
       "profilePicture": "hailz.png",
-      "membership": "Member",
-      "isAdmin": false
+      "membership": "Member+",
+      "isAdmin": false,
+      "id": 2
     },
     {
       "username": "TheMontyOum",
       "password": "Monty",
       "firstName": "Monty",
       "lastName": "Oum",
+      "email": "montyoum@rt.com",
       "dob": "1981-06-22",
-      "profilePicture": "monty.png",
+      "profilePicture": "montyoum.png",
       "membership": "Member+",
-      "isAdmin": false
+      "isAdmin": false,
+      "id": 3
     },
     {
       "username": "DavidMartinez2077",
       "password": "David",
       "firstName": "David",
       "lastName": "Martinez",
+      "email": "dmartinez2077@nc.com",
       "dob": "2058-01-18",
       "profilePicture": "david.png",
       "membership": "Free Member",
-      "isAdmin": false
+      "isAdmin": false,
+      "id": 4
     },
     {
       "username": "Bmblb09",
       "password": "Blake",
       "firstName": "Blake",
       "lastName": "Belladonna",
+      "email": "belladonnab@beacon.net",
       "dob": "2000-01-19",
       "profilePicture": "blake.png",
       "membership": "Member+",
-      "isAdmin": false
+      "isAdmin": false,
+      "id": 5
     },
     {
       "username": "Shy Cat",
       "password": "Komi",
       "firstName": "Komi",
       "lastName": "Shouko",
+      "email": "shoukok@itami.co.jp",
       "dob": "2002-12-25",
       "profilePicture": "komi.png",
-      "membership": "Member+",
-      "isAdmin": false
+      "membership": "Member",
+      "isAdmin": false,
+      "id": 6
     }
   ]
 }

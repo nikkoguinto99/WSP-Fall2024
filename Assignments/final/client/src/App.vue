@@ -2,11 +2,11 @@
 import { RouterView } from 'vue-router';
 import NavBar from './components/NavBar.vue';
 import FooterSec from './components/FooterSec.vue';
-import UserStore from './models/userStore.ts'; // Import your user store
+import userStore from './models/userStore'; // Import your user store
 import { provide } from 'vue';
 
 // Provide the UserStore
-provide('UserStore', UserStore);
+provide('UserStore', userStore);
 </script>
 
 <template>
