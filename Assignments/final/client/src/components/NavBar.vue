@@ -118,6 +118,35 @@ const logout = () => {
                     Logout
                   </button>
                 </template>
+
+                <div>
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="button is-white">
+                      <!-- eslint-disable-next-line vue/no-parsing-error -->
+                      Admin&nbsp
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        <RouterLink to="/Admin/">Users</RouterLink>
+                      </a>
+                      <hr class="navbar-divider">
+                      <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+                        Projects List
+                      </a>
+                      <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
+                        Midterm Example
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}" @click="isCartOpen = !isCartOpen">
+                  <span class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                </button>
+
               </div>
             </div>
           </div>
