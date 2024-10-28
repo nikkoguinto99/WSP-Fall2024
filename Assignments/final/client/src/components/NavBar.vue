@@ -106,9 +106,23 @@ const getProfileUrl = (filename: string) => new URL(`../assets/photos/Pfps/${fil
                   <RouterLink to="/signup" class="button is-primary">
                     <strong>Sign up</strong>
                   </RouterLink>
-                  <RouterLink to="/login" class="button is-white">
-                    Login
-                  </RouterLink>
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="button is-white">
+                    <!--eslint-disable-next-line vue/no-parsing-error-->
+                    Login&nbsp
+                    <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        Nicholas
+                      </a>
+                      <hr class="navbar-divider">
+                      <RouterLink class="navbar-item" to="/login">
+                        Other Login
+                      </RouterLink>
+                  </div>
+                  </div>
+
                 </template>
 
                 <!-- Show welcome message and logout button if user is logged in -->
