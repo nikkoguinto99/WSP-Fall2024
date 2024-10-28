@@ -1,18 +1,22 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import FlyoutPanel from './FlyoutPanel.vue';
 import ShoppingCart from './shoppingCart.vue';
+import UserStore from '@/models/userStore.ts';
 
 // State Variables
 const isOpen = ref(false);
 const isCartOpen = ref(false);
 const router = useRouter();
-const user = JSON.parse(localStorage.getItem('user') || 'null'); // Retrieve user info
+
+// Computed property to access user from UserStore
+const user = computed(() => UserStore.state.user);
 
 const logout = () => {
   localStorage.removeItem('user'); // Clear user data
+  UserStore.clearUser(); // Clear user state in store
   router.push('/'); // Redirect to Home page
 };
 </script>

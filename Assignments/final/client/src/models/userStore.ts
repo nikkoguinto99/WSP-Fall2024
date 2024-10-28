@@ -7,6 +7,10 @@ interface User {
   firstName: string;
   lastName: string;
   // Add other fields as needed
+  dob: string;
+  profilePicture: string;
+  membership: string;
+  isAdmin: boolean;
 }
 
 // Create a reactive state
