@@ -1,0 +1,94 @@
+
+[
+        {
+            "type": "Cardio",
+            "caption": "Walked around campus!",
+            "image": "Walking.jpg",
+            "likes": 10,
+            "comments": 2,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 1,
+                "profilePicture": "nikko.png",
+                "firstName": "Nicholas",
+                "lastName": "Guinto",
+                "username": "itsnikkoguinto"
+            }
+        },
+        {
+            "type": "Cardio",
+            "caption": "Had a great time at the beach!",
+            "image": "beach.jpg",
+            "likes": 20,
+            "comments": 5,
+            "date": "Oct 15 2024",
+            "user": {
+                "id": 2,
+                "profilePicture": "hailz.png",
+                "firstName": "Hailey",
+                "lastName": "Terwilliger",
+                "username": "HailzTerwillz"
+            }
+        },
+        {
+            "type": "Aerobic",
+            "caption": "Played some Dance Dance Revolution!",
+            "image": "ddr.png",
+            "likes": 15,
+            "comments": 3,
+            "date": "Jul 13 2012",
+            "user": {
+                "id": 3,
+                "profilePicture": "montyoum.png",
+                "firstName": "Monty",
+                "lastName": "Oum",
+                "username": "TheMontyOum"
+            }
+        },
+        {
+            "type": "Cardio",
+            "caption": "Explored a brand new world!",
+            "image":  "blake-walk.png",
+            "likes": 25,
+            "comments": 7,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 5,
+                "profilePicture": "blake.png",
+                "firstName": "Blake",
+                "lastName": "Belladonna",
+                "username": "Bmblbee0119"
+            }
+        },
+        {
+            "type": "Endurance",
+            "caption": "Ran across the streets of NC!",
+            "image": "david_nightcity.jpg",
+            "likes": 30,
+            "comments": 10,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 4,
+                "profilePicture": "david.png",
+                "firstName": "David",
+                "lastName": "Martinez",
+                "username": "DavidMartinez2077"
+            }
+        },
+        {
+            "type": "Cardio",
+            "caption": "友達と体育祭を楽しみました！",
+            "image": "sportsday.jpg",
+            "likes": 35,
+            "comments": 12,
+            "date": "Oct 23 2024",
+            "user": {
+                "id": 6,
+                "profilePicture": "komi.png",
+                "firstName": "Komi",
+                "lastName": "Shouko",
+                "username": "Shy Cat64"
+            }
+        }
+
+]
