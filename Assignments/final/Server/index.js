@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
     res.send("Haven't forgotten a thing. Never will.")
 }).get("/about", (req, res) => {
         res.send("About Us")
-    }).use("/users", require("./controllers/users"))
+    }).use("/users")
 
 app.listen(PORT, () => {
     console.log("Server is running at http://localhost:" + PORT)

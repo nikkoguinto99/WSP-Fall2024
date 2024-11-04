@@ -1,28 +1,26 @@
 
-const data = require("../data/users.json")
+const model = require("../models/users")
 const express = require("express")
 const app = express.Router()
 
 app.get("/", (req, res) => {
-    res.send(data.items)
+    model.getAll()
 }).get("/:id", (req, res) => {
     const id = req.params.id //Local variable called id which points to the id parameter in the URL
-    const user = data.items.find(user => user.id == id)
+    const user = model.get(id)
     res.send(user)
 }).post("/", (req, res) => {
-    const user = req.body
-    user.id = data.items.reduce((prev, x)=> (x.id > prev ? x.id : prev), 0) + 1
+    const user = model.add(req.body)
     data.items.push(user)
     res.send(user)
 }).patch("/:id", (req, res) => { //patch edits information
     const id = req.params.id
-    const user = data.items.find(user => user.id == id)
+    const user = model.update(id, req.body)
     Object.assign(user, req.body)
     res.send(user)
 }).delete("/:id", (req, res) => {
     const id = req.params.id
-    const userIndex = data.items.findIndex(user => user.id == id)
-    data.items.splice(userIndex, 1)
+    const ret = model.remove(id)
     res.send(user)
 })
 
