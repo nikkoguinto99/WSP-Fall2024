@@ -5,6 +5,11 @@ const productController = require("./controllers/products")
 
 const PORT = 3000
 
+//Middleware
+app.use(express.json())
+app.use(express.static(__dirname + "/dist")) //Middleware that looks at every request
+
+//Controllers
 app.get("/", (req, res) => {
     res.send("Hello World")
 })
