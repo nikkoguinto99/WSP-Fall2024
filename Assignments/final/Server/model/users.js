@@ -1,8 +1,15 @@
-/*  B"H
- */
 
+/**@type {{ items: User[] }} */
 const data = require("../data/users.json")
 
+
+/**
+ * @typedef {import("../../client/src/models/users").User} User
+ */
+/**
+ * Get all users
+ * @returns {Array} All users
+ */
 function getAll() {
     return data.items
 }
@@ -18,7 +25,7 @@ function add(user) {
 }
 
 function update(id, user) {
-    const userToUpdate = data.items.find((user) => user.id == id)
+    const userToUpdate = get(id)
     Object.assign(userToUpdate, user)
     return userToUpdate
 }

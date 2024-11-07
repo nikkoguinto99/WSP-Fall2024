@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "checkJs": true,
+        "resolveJsonModule": true
+    }
+}
+
+/*
+ * 1. checkJs: true - This option enables type checking in JavaScript files.
+ * 2. resolveJsonModule: true - This option enables importing JSON files as modules.
+*/
