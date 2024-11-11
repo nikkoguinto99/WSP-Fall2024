@@ -10,14 +10,14 @@ app.use(express.json())
 app.use(express.static(__dirname + "/dist")) //Middleware that looks at every request
 
 //Controllers
-app.get("/", (req, res) => {
+app.get("/", (req, res) => { //Useless, but it's here. 
     res.send("Hello World")
 })
     .get("/about", (req, res) => { //Mounts Controller
         res.send("About Us")
     })
-    .use("/users", userController)
-    .use("/products", productController)
+    .use("/api/v1/users", userController)  //Use API. Practice helps with understanding the code.
+    .use("/api/v1/products", productController)
 
 app.listen(PORT, () => {
     console.log("Haven't Forgotten a thing. Never will.")
