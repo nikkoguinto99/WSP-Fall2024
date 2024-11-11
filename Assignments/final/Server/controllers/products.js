@@ -10,27 +10,31 @@ const app = express.Router()
 
 */
 
-app.get("/", (req, res) => {
-    res.send(model.getAll())
+app.get("/", (req, res, next) => {
+    res.send(model.getAll()) //Promise does not contain array. It contains a promise that will resolve to an array.
 })
-    .get("/:id", (req, res) => {
+    .get("/:id", (req, res, next) => {
         const id = req.params.id
         const product = model.get(id)
         res.send(product)
     })
-    .post("/", (req, res) => {
+    .post("/", (req, res, next) => {
         const product = model.add(req.body)
         res.send(product)
     })
-    .patch("/:id", (req, res) => {
+    .patch("/:id", (req, res, next) => {
         const id = req.params.id
         const product = model.update(id, req.body)
         res.send(product)
     })
-    .delete("/:id", (req, res) => {
+    .delete("/:id", (req, res, next) => {
         const id = req.params.id
-        const ret = model.remove(id)
-        res.send(ret)
+        try {
+            const ret = model.remove(id)
+            res.send(ret)
+        }catch (err) {
+            next(err.message)
+        }
     })
 
 module.exports = app
