@@ -1,5 +1,16 @@
 {
+  "name": "WSP-FALL2024",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+      "start": "node server/index.js",
+      "dev": "nodemon server/index.js --watch server"
+  },
   "dependencies": {
-    "@vueuse/core": "^11.1.0"
+      "express": "^4.21.0",
+      "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+      "nodemon": "^3.1.7"
   }
 }
