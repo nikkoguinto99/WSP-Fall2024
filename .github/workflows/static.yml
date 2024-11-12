@@ -33,13 +33,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Setup Node.js
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 9.0.0
 
       - name: build vue
-        run: | 
+        run: |
           cd Assignments/final/client
           pnpm install
           pnpm run build
@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the dist directory as an artifact
-          path: './Client/dist'
+          path: '../../Assignments/final/client/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
