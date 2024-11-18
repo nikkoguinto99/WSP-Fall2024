@@ -3,38 +3,45 @@ const express = require("express")
 const app = express.Router()
 
 /* Four ways to send data to the server:
-1. Query String
-2. Path Parameters
-3. Headers
-4. Body
-
-*/
+ * 1. Query String
+ * 2. URL Parameters
+ * 3. Headers
+ * 4. Body
+ */
 
 app.get("/", (req, res, next) => {
-    res.send(model.getAll()) //Promise does not contain array. It contains a promise that will resolve to an array.
+    model
+        .getAll()
+        .then((x) => res.send(x))
+        .catch(next)
 })
     .get("/:id", (req, res, next) => {
         const id = req.params.id
-        const product = model.get(id)
-        res.send(product)
+        model
+            .get(+id)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .post("/", (req, res, next) => {
-        const product = model.add(req.body)
-        res.send(product)
+        model
+            .add(req.body)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .patch("/:id", (req, res, next) => {
         const id = req.params.id
-        const product = model.update(id, req.body)
-        res.send(product)
+        model
+            .update(+id, req.body)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .delete("/:id", (req, res, next) => {
         const id = req.params.id
-        try {
-            const ret = model.remove(id)
-            res.send(ret)
-        }catch (err) {
-            next(err.message)
-        }
+
+        model
+            .remove(+id)
+            .then((x) => res.send(x))
+            .catch(next)
     })
 
 module.exports = app
