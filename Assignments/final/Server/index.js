@@ -7,9 +7,9 @@ const PORT = 3000
 
 //Middleware
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Methods", "*")
-    res.header("Access-Control-Allow-Headers", "*")
+    res.header("Access-Control-Allow-Origin", "*") //Allow all origins
+    res.header("Access-Control-Allow-Methods", "*") //Allow all methods
+    res.header("Access-Control-Allow-Headers", "*") //Allow all headers
     next()
 })
 
