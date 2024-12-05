@@ -1,4 +1,4 @@
-const model = require("../model/users")
+const model = require("../model/posts")
 const express = require("express")
 const app = express.Router()
 
@@ -9,14 +9,12 @@ const app = express.Router()
  * 4. Body
  */
 
-// @ts-ignore
 app.get("/", (req, res) => {
     res.send(model.getAll())
 })
     .get("/:id", (req, res) => {
         const id = req.params.id
-        // @ts-ignore
-        const user = model.get(id)
+        const user = model.get(+id)
         res.send(user)
     })
     .post("/", (req, res) => {
@@ -25,14 +23,12 @@ app.get("/", (req, res) => {
     })
     .patch("/:id", (req, res) => {
         const id = req.params.id
-        // @ts-ignore
-        const user = model.update(id, req.body)
+        const user = model.update(+id, req.body)
         res.send(user)
     })
     .delete("/:id", (req, res) => {
         const id = req.params.id
-        // @ts-ignore
-        const ret = model.remove(id)
+        const ret = model.remove(+id)
         res.send(ret)
     })
 module.exports = app

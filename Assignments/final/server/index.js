@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const userController = require("./controllers/users")
+const postController = require("./controllers/posts")
 const PORT = 3000
 
 // Middleware
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
         res.send("About Us")
     })
     .use("/users", userController)
+    .use("/posts", postController)
 
 app.listen(PORT, () => {
     console.log("Server is running at http://localhost:" + PORT)
