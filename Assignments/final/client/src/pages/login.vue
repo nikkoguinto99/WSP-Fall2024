@@ -1,9 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import usersData from '@/data/users.json';
-import userStore from '@/models/userStore';
+import { useUsers } from '../models/users.ts';  // Import the useUsers function
 
 const router = useRouter();
 const username = ref('');
@@ -12,31 +11,37 @@ const loading = ref(false);
 const errorMessage = ref('');
 const isOpen = ref(false); // Control for the modal
 
+// Import userStore to manage logged-in user state
+import { useUserStore } from '@/models/userStore';
+
+const userStore = useUserStore();
+
 const handleLogin = () => {
   loading.value = true;
   errorMessage.value = '';
 
   try {
-    // Ensure usersData and users array are loaded correctly
-    if (!usersData || !usersData.users) {
-      console.error("usersData or usersData.users is undefined.");
-      errorMessage.value = 'User data not loaded. Please contact support.';
+    if (users.value.length === 0) {
+      errorMessage.value = 'User data not loaded yet. Please try again later.';
       loading.value = false;
       return;
     }
 
-    // Log data structure for debugging
-    console.log("Loaded usersData:", usersData);
-
-    // Find user in JSON data
-    const user = usersData.users.find(
-      (u) => u.username === username.value && u.password === password.value
+    const user = users.value.find(
+      (u) => u.profileName === username.value && u.password === password.value
     );
 
     if (user) {
+      // Set the logged-in user in the store
+      userStore.setUser(user);
+
+      // Store user data in localStorage for persistence
       localStorage.setItem('user', JSON.stringify(user));
-      userStore.setUser(user); // Update the UserStore with the logged-in user
-      router.push('/activity');
+
+      console.log('Login successful:', user.profileName);
+
+      // Redirect to the dashboard
+      router.push('/dashboard');
     } else {
       errorMessage.value = 'Invalid username or password';
     }
@@ -48,6 +53,16 @@ const handleLogin = () => {
   }
 };
 
+
+// Use the `useUsers` function to load users data
+const { users } = useUsers();
+
+// Watch users and handle login when users data is loaded
+watch(users, (newUsers) => {
+  if (newUsers.length === 0) {
+    console.error("No users loaded. Please check the data.");
+  }
+}, { immediate: true });
 
 </script>
 

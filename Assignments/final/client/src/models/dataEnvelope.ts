@@ -1,13 +1,9 @@
-/* npm run type-check
- */
-
 export interface DataEnvelope<T> {
   data: T
-  message?: string
-  isSuccess: boolean
+  error?: string
 }
-
 export interface DataListEnvelope<T> extends DataEnvelope<T[]> {
   data: T[]
   total: number
+  error?: string
 }

@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import NavBar from './components/NavBar.vue';
-import FooterSec from './components/FooterSec.vue';
-import userStore from './models/userStore'; // Import your user store
-import { provide } from 'vue';
-
-// Provide the UserStore
-provide('UserStore', userStore);
+import NavBar from './components/NavBar.vue'
+import FooterEnd from './components/FooterEnd.vue'
 </script>
 
 <template>
@@ -17,17 +11,18 @@ provide('UserStore', userStore);
   <div class="container">
     <RouterView />
   </div>
-  <div class="container is-fluid">
-    <FooterSec />
-  </div>
+
+    <FooterEnd />
+
 </template>
 
 <style scoped>
 body {
   background-color: aliceblue;
 }
-.container-home {
-  background-color: whitesmoke;
+
+.container {
+
   box-shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   min-height: 100vh;
 }

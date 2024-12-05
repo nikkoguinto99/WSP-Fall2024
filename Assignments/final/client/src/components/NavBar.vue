@@ -1,195 +1,150 @@
-<!-- eslint-disable vue/no-parsing-error -->
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-import FlyoutPanel from './FlyoutPanel.vue';
-import ShoppingCart from './shoppingCart.vue';
-import UserStore from '../models/userStore';
+import { useUserStore } from '@/models/userStore';
 
-// State Variables
 const isOpen = ref(false);
-const isCartOpen = ref(false);
+
+// Access the userStore
+const userStore = useUserStore();
+
+// Compute the logged-in user state
+const isLoggedIn = computed(() => userStore.state.user !== null);
+const user = computed(() => userStore.state.user);
+
+// Check if the logged-in user is an admin
+const isAdmin = computed(() => user.value?.isAdmin || false);
+
+// Get the router instance
 const router = useRouter();
 
-// Computed property to access user from UserStore
-const user = computed(() => UserStore.state.user);
-
-const logout = () => {
-  localStorage.removeItem('user'); // Clear user data
-  UserStore.clearUser(); // Clear user state in store
-  router.push('/'); // Redirect to Home page
+// Handle logout
+const handleLogout = () => {
+  userStore.clearUser();
+  isOpen.value = false;
+  router.push('/'); // Redirect to home page
 };
 
 const getProfileUrl = (filename: string) => new URL(`../assets/photos/Pfps/${filename}`, import.meta.url).href;
 </script>
 
-
-
 <template>
-  <div>
-    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-      <div class="container">
-        <div class="navbar-brand">
-          <RouterLink class="navbar-item" to="/">
-            <img class="homeimg" src="../assets/logo.png"> <label for="" class="label">Home</label>
-          </RouterLink>
+  <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <img alt="Vue logo" class="logo" src="@/assets/samurai.svg" width="50" height="30"/>
 
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-             :class="{ 'is-active': isOpen}" @click="isOpen = !isOpen">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+           :class="{ 'is-active': isOpen }" @click="isOpen = !isOpen">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-        <div class="navbar-menu" :class="{ 'is-active': isOpen }">
-          <div class="navbar-start">
-            <RouterLink class="navbar-item" to="/activity"><label for="navbar-item" class="label">
+      <div class="navbar-menu" :class="{ 'is-active': isOpen }">
+        <div class="navbar-start">
+          <!-- Show Dashboard if logged in, otherwise show default links -->
+          <template v-if="isLoggedIn">
+            <RouterLink to="/dashboard" class="navbar-item">
               <i class="fas fa-user"></i>
-              My Activity
-            </label></RouterLink>
-
-            <RouterLink class="navbar-item" to="/statistics"><label for="navbar-item" class="label">
+              Dashboard
+            </RouterLink>
+            <RouterLink to="/statistics" class="navbar-item">
               <i class="fas fa-chart-line"></i>
               Statistics
-            </label></RouterLink>
-
-            <RouterLink class="navbar-item" to="/postingPage"><label for="navbar-item" class="label">
+            </RouterLink>
+            <RouterLink to="/posting" class="navbar-item">
               <i class="fas fa-users"></i>
               User Posts
-            </label></RouterLink>
-
-            <RouterLink class="navbar-item" to="/search"><label for="navbar-item" class="label">
+            </RouterLink>
+            <RouterLink to="/classes" class="navbar-item">
+              <i class="fas fa-dumbbell"></i>
+              Classes
+            </RouterLink>
+            <RouterLink to="/search" class="navbar-item">
               <i class="fas fa-search"></i>
               Search
-            </label></RouterLink>
+              </RouterLink>
+          </template>
+          <template v-else>
+            <RouterLink to="/" class="navbar-item">Home</RouterLink>
+            <RouterLink to="/about" class="navbar-item">About</RouterLink>
             <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          <label for="navbar-item" class="label">
-            More
-          </label>
-        </a>
+            <a class="navbar-link">
+              More
+            </a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            <RouterLink to="/More/about">About Us</RouterLink>
-          </a>
-          <a class="navbar-item">
-            <RouterLink to="/More/careers">Careers</RouterLink>
-          </a>
-          <a class="navbar-item">
-            <RouterLink to ="/More/contact">Contact us!</RouterLink>
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-        <RouterLink to="/More/member">Memberships</RouterLink>
-      </a>
-
-      <a class="navbar-item">
-        <RouterLink to="/More/testimonial">Testimonials</RouterLink>
-      </a>
-
-      <a class="navbar-item">
-        <RouterLink to="/Products">Samurai Shop</RouterLink>
-      </a>
-        </div>
-      </div>
+            <div class="navbar-dropdown">
+              <RouterLink to="/more/memberships" class="navbar-item">
+                Memberships
+              </RouterLink>
+              <RouterLink to="/more/careers" class="navbar-item">
+                Careers
+              </RouterLink>
+              <RouterLink to="/more/contactus" class="navbar-item">
+                Contact
+              </RouterLink>
+            </div>
           </div>
+          </template>
 
-
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <!-- Show login/signup buttons if user is not logged in -->
-                <template v-if="!user">
-                  <RouterLink to="/signup" class="button is-primary">
-                    <strong>Sign up</strong>
-                  </RouterLink>
-                  <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-white">
-                    <!--eslint-disable-next-line vue/no-parsing-error-->
-                    Login&nbsp
-                    <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="navbar-dropdown">
-                      <a class="navbar-item">
-                        Nicholas
-                      </a>
-                      <hr class="navbar-divider">
-                      <RouterLink class="navbar-item" to="/login">
-                        Other Login
-                      </RouterLink>
-                  </div>
-                  </div>
-
-                </template>
-
-                <!-- Show welcome message and logout button if user is logged in -->
-                <template v-else>
-                  <span class="navbar-item">
-                    <figure class="image is-32x32" style="margin-right: 10px;">
-                      <img v-if="user.profilePicture" :src="getProfileUrl(user.profilePicture)" alt="Profile Picture" />
-                    </figure>
-                    Welcome, {{ user.firstName }}!
-                  </span>
-                  <button class="button is-danger" @click="logout">
-                    Logout
-                  </button>
-                </template>
-
-                <div>
-                  <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-white">
-                      <!-- eslint-disable-next-line vue/no-parsing-error -->
-                      Admin&nbsp
-                      <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="navbar-dropdown">
-                        <RouterLink class="navbar-item" to="/Admin/">Users</RouterLink>
-                      <hr class="navbar-divider">
-                      <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
-                        Projects List
-                      </a>
-                      <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
-                        Midterm Example
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <button class="button is-warning is-light" :class="{'is-focused': isCartOpen}" @click="isCartOpen = !isCartOpen">
-                  <span class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                  </span>
-                </button>
-
+          <!-- Admin dropdown (visible only to admin users) -->
+          <template v-if="isAdmin">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <i class="fas fa-cog"></i>
+                Admin
+              </a>
+              <div class="navbar-dropdown">
+                <RouterLink class="navbar-item" to="/admin">Tools</RouterLink>
+                <hr class="navbar-divider" />
+                <a class="navbar-item" href="https://wsp-fall2024.onrender.com/index.html" target="_blank">
+                  Projects List
+                </a>
+                <a class="navbar-item" href="https://midterm-example.onrender.com/" target="_blank">
+                  Midterm Example
+                </a>
               </div>
+            </div>
+          </template>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <!-- Show Welcome message if logged in, otherwise show Sign up and Log in -->
+              <template v-if="isLoggedIn">
+                <span class="navbar-item">
+                  <figure class="image is-32x32" style="margin-right: 10px;">
+                      <img v-if="user && user.profilePic" :src="getProfileUrl(user.profilePic)" alt="Profile Picture" />
+                    </figure>
+                  Welcome, {{ user?.firstName }}
+                </span>
+                <button class="button is-light" @click="handleLogout">
+                  Log out
+                </button>
+              </template>
+              <template v-else>
+                <RouterLink to="/signup" class="button is-primary">
+                  <strong>Sign up</strong>
+                </RouterLink>
+                <RouterLink to="/login" class="button is-light">
+                  Log in
+                </RouterLink>
+              </template>
             </div>
           </div>
         </div>
       </div>
-      <FlyoutPanel :is-open="isCartOpen">
-        <ShoppingCart />
-      </FlyoutPanel>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </template>
 
-
 <style scoped>
-  .router-link-active {
-    font-weight: bold;
-    border-bottom: 2px solid blue;
-  }
-
-  .homeimg {
-    margin-top: 5px;
-  }
-
-  .label {
-    color: black !important;
-    cursor: pointer;
-  }
-
+.router-link-active {
+  font-weight: bold;
+  border-bottom: 2px solid blue;
+}
 </style>

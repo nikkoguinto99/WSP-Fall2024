@@ -4,25 +4,21 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import VueRouter from 'unplugin-vue-router/vite'
+import VueRouter from 'unplugin-vue-router/vite' // From unplugin-vue-router
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     VueRouter({
-      /* options */
+
     }),
     vue(),
     vueJsx(),
-    vueDevTools()
+    vueDevTools(),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    },
   },
-  base: './',
-  build:{
-    outDir: '../server/dist'
-  }
 })
