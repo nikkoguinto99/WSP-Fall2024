@@ -10,13 +10,13 @@ app.use(express.static(__dirname + "/dist")) //Run 'npm run build' from inside c
 
 // Controllers
 app.get("/", (req, res) => {
-    res.send("Hello World")
+    res.send("Hello New Paltz!")
 })
     .get("/about", (req, res) => {
         res.send("About Us")
     })
-    .use("/users", userController)
-    .use("/posts", postController)
+    .use("/api/v1/users", userController)
+    .use("/api/v1/posts", postController)
 
 app.listen(PORT, () => {
     console.log("Server is running at http://localhost:" + PORT)
