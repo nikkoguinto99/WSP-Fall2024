@@ -1,0 +1,31 @@
+{
+    "items":[
+        {
+            "id": 1,
+            "name": "Cardio",
+            "description": "Cardiovascular exercise is any exercise that raises your heart rate. Face it our bodies were made to move. And we all know that to keep our muscles in shape we need move them. This movement makes them stronger and stronger muscles make for a more efficient and healthy body. Your heart is a muscle. Therefore working it makes it stronger. A stronger cardio-vascular system means more capillaries delivering more oxygen to cells in your muscles. This enables your cells to burn more fat during both exercise and inactivity.",
+            "image": "cardio.jpg",
+            "date": "2024-12-12",
+            "time": "12:00",
+            "capacity": 10
+        },
+        {
+            "id": 2,
+            "name": "Flexibility",
+            "description": "Flexibility is the ability of a joint or series of joints to move through an unrestricted, pain free range of motion. Flexibility training includes stretching exercises to lengthen the muscles and may include activities like yoga or Tai Chi. Improving the range of motion in a joint can improve overall function.",
+            "date": "2024-12-15",
+            "time": "12:00",
+            "image": "flexibility.jpeg",
+            "capacity": 10
+        },
+        {
+            "id": 3,
+            "name": "Strength",
+            "description": "Strength training is a type of physical exercise specializing in the use of resistance to induce muscular contraction which builds the strength, anaerobic endurance, and size of skeletal muscles. When properly performed, strength training can provide significant functional benefits and improvement in overall health and well-being, including increased bone, muscle, tendon, and ligament strength and toughness, improved joint function, reduced potential for injury, increased bone density, increased metabolism, increased fitness, improved cardiac function, and improved lipoprotein lipid profiles, including elevated HDL (\"good\" cholesterol).",
+            "date": "2024-12-14",
+            "time": "12:00",
+            "image": "strength.jpg",
+            "capacity": 10
+        }
+    ]
+}

@@ -1,0 +1,220 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "caption": "Walked around New Paltz today",
+            "image": "Walking.jpg",
+            "type": "Cardio",
+            "duration": 120,
+            "calorieburn": 80,
+            "date": "2022-11-12",
+            "userID": 2,
+            "likes": 10,
+            "comments": [
+                {
+                    "id": 1,
+                    "userID": 3,
+                    "comment": "Nice!"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "caption": "Yoga session in a magical forest",
+            "image": "blake-walk.png",
+            "type": "Flexibility",
+            "duration": 60,
+            "calorieburn": 200,
+            "date": "2023-03-01",
+            "userID": 6,
+            "likes": 15,
+            "comments": [
+                {
+                    "id": 2,
+                    "userID": 7,
+                    "comment": "Looks peaceful!"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "caption": "Endurance training around the city",
+            "image": "david_nightcity.jpg",
+            "type": "Endurance",
+            "duration": 45,
+            "calorieburn": 400,
+            "date": "2023-04-15",
+            "userID": 5,
+            "likes": 30,
+            "comments": [
+                {
+                    "id": 3,
+                    "userID": 4,
+                    "comment": "Great job, David!"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "caption": "Relay Race at Sports Day",
+            "image": "sportsday.jpg",
+            "type": "Cardio",
+            "duration": 90,
+            "calorieburn": 150,
+            "date": "2022-04-22",
+            "userID": 7,
+            "likes": 25,
+            "comments": [
+                {
+                    "id": 4,
+                    "userID": 2,
+                    "comment": "Keep it up, Shouko!"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "caption": "Burned up a sweat at Dance Dance Revolution",
+            "image": "ddr.png",
+            "type": "Skill Training",
+            "duration": 120,
+            "calorieburn": 500,
+            "date": "2012-07-18",
+            "userID": 4,
+            "likes": 40,
+            "comments": [
+                {
+                    "id": 6,
+                    "userID": 5,
+                    "comment": "Inspiring, Monty!"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "caption": "Walking on the sands of Myrtle",
+            "image": "beach.jpg",
+            "type": "Cardio",
+            "duration": 180,
+            "calorieburn": 300,
+            "date": "2024-10-15",
+            "userID": 3,
+            "likes": 20,
+            "comments": [
+                {
+                    "id": 7,
+                    "userID": 6,
+                    "comment": "Wish I could join!"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "caption": "Morning cycling at the park",
+            "image": "biking.png",
+            "type": "Cardio",
+            "duration": 60,
+            "calorieburn": 250,
+            "date": "2023-05-01",
+            "userID": 2,
+            "likes": 15,
+            "comments": [
+                {
+                    "id": 8,
+                    "userID": 6,
+                    "comment": "Sounds refreshing!"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "caption": "Afternoon hike in the mountains",
+            "image": "mohonk.png",
+            "type": "Cardio",
+            "duration": 120,
+            "calorieburn": 400,
+            "date": "2023-06-15",
+            "userID": 2,
+            "likes": 20,
+            "comments": [
+                {
+                    "id": 9,
+                    "userID": 3,
+                    "comment": "Way to go!"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "caption": "Root pulling",
+            "image": "blake_tree.png",
+            "type": "Strength",
+            "duration": 30,
+            "calorieburn": 100,
+            "date": "2023-08-12",
+            "userID": 6,
+            "likes": 10,
+            "comments": [
+                {
+                    "id": 10,
+                    "userID": 5,
+                    "comment": "Good habit!"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "caption": "Climbing to new heights!",
+            "image": "blake_climb.png",
+            "type": "Flexibility",
+            "duration": 45,
+            "calorieburn": 50,
+            "date": "2023-09-20",
+            "userID": 6,
+            "likes": 25,
+            "comments": [
+                {
+                    "id": 11,
+                    "userID": 4,
+                    "comment": "Looks serene!"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "caption": "Jogging with @LucyNC",
+            "image": "david_run.png",
+            "type": "Cardio",
+            "duration": 40,
+            "calorieburn": 300,
+            "date": "2023-10-05",
+            "userID": 5,
+            "likes": 35,
+            "comments": [
+                {
+                    "id": 12,
+                    "userID": 7,
+                    "comment": "Awesome work!"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "caption": "Pulling up to the gym! #Squad goals",
+            "image": "david_ripped.png",
+            "type": "Strength",
+            "duration": 50,
+            "calorieburn": 350,
+            "date": "2023-11-02",
+            "userID": 5,
+            "likes": 30,
+            "comments": [
+                {
+                    "id": 13,
+                    "userID": 2,
+                    "comment": "Amazing strength!"
+                }
+            ]
+        }
+    ]
+}
