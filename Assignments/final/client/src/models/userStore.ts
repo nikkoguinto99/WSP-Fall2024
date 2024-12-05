@@ -1,35 +1,50 @@
-// src/store/UserStore.ts
 import { reactive } from 'vue';
 
-// Define the user type
+// User interface definition
 interface User {
-  username: string;
+  id: number;
   firstName: string;
   lastName: string;
-  // Add other fields as needed
   dob: string;
-  profilePicture: string;
-  membership: string;
+  sex: string;
+  email: string;
+  password: string;
+  membershipType: string;
+  profileName: string;
+  profilePic: string;
+  bio: string;
+  fitnessGoals: string;
+  height: string;
+  weight: string;
+  caloriegoal: string;
+  dietaryPreferences: string;
   isAdmin: boolean;
-  id: number;
 }
 
-// Create a reactive state
+// Reactive state for user management
 const state = reactive({
   user: null as User | null,
 });
 
-// Define methods for managing user state
-const setUser = (user: User) => {
+// Functions to manipulate the state
+function setUser(user: User) {
   state.user = user;
-};
+}
 
-const clearUser = () => {
+function clearUser() {
   state.user = null;
-};
+}
 
-export default {
+function updateUser(updatedUser: Partial<User>) {
+  if (state.user) {
+    state.user = { ...state.user, ...updatedUser };
+  }
+}
+
+// Export the state and functions for use in components
+export const useUserStore = () => ({
   state,
   setUser,
   clearUser,
-};
+  updateUser,
+});

@@ -1,11 +1,164 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/models/userStore'; // import your user store
 
-const isOpen = ref(false)
+// Router instance
+const router = useRouter();
+
+// Reactive state for Step 1
+const step = ref(1);
+const isOpen = ref(false);
+const accountInfo = ref({
+  firstName: '',
+  lastName: '',
+  dob: '',
+  sex: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  membershipType: '',
+  agreeTerms: false,
+});
+
+// Reactive state for Step 2
+const profileInfo = ref({
+  profileName: '',
+  profilePicture: '',
+  bio: '',
+  fitnessGoals: '',
+  height: '',
+  weight: '',
+  calorieGoal: '',
+  dietaryPreference: '',
+});
+
+// Reactive error state for each field
+const errors = ref<Record<keyof typeof accountInfo.value | keyof typeof profileInfo.value, string>>({
+  firstName: '',
+  lastName: '',
+  dob: '',
+  sex: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  membershipType: '',
+  agreeTerms: '',
+  profileName: '',
+  profilePicture: '',
+  bio: '',
+  fitnessGoals: '',
+  height: '',
+  weight: '',
+  calorieGoal: '',
+  dietaryPreference: ''
+});
+
+// Validation Function for Step 1
+const validateStep1 = () => {
+  let isValid = true;
+
+  // Reset error messages
+  Object.keys(errors.value).forEach((key) => {
+    errors.value[key as keyof typeof errors.value] = '';
+  });
+
+  // Check fields
+  if (!accountInfo.value.firstName) {
+    errors.value.firstName = 'First name is required.';
+    isValid = false;
+  }
+  if (!accountInfo.value.lastName) {
+    errors.value.lastName = 'Last name is required.';
+    isValid = false;
+  }
+  if (!accountInfo.value.dob) {
+    errors.value.dob = 'Date of birth is required.';
+    isValid = false;
+  }
+  if (!accountInfo.value.sex) {
+    errors.value.sex = 'Please select your sex.';
+    isValid = false;
+  }
+  if (!accountInfo.value.email || !/\S+@\S+\.\S+/.test(accountInfo.value.email)) {
+    errors.value.email = 'A valid email is required.';
+    isValid = false;
+  }
+  if (!accountInfo.value.password) {
+    errors.value.password = 'Password is required.';
+    isValid = false;
+  }
+  if (accountInfo.value.password !== accountInfo.value.confirmPassword) {
+    errors.value.confirmPassword = 'Passwords must match.';
+    isValid = false;
+  }
+  if (!accountInfo.value.membershipType) {
+    errors.value.membershipType = 'Please select a membership type.';
+    isValid = false;
+  }
+  if (!accountInfo.value.agreeTerms) {
+    errors.value.agreeTerms = 'You must agree to the terms and conditions.';
+    isValid = false;
+  }
+
+  return isValid;
+};
+
+// Validation Function for Step 2
+const validateStep2 = () => {
+  let isValid = true;
+
+  // Reset error messages
+  errors.value.profileName = '';
+
+  if (!profileInfo.value.profileName) {
+    errors.value.profileName = 'Profile name is required.';
+    isValid = false;
+  }
+
+  return isValid;
+};
+
+// Handle step progression
+const nextStep = () => {
+  if (step.value === 1 && validateStep1()) {
+    step.value++;
+  }
+};
+
+const previousStep = () => {
+  step.value--;
+};
+
+// Final submission
+const submitSignUp = () => {
+  if (validateStep2()) {
+    console.log('Account Info:', accountInfo.value);
+    console.log('Profile Info:', profileInfo.value);
+
+    // Get the user store
+    const userStore = useUserStore();
+
+    // Set user data in the store
+    userStore.setUser({
+      ...accountInfo.value,
+      ...profileInfo.value,
+      id: 0,
+      profilePic: '',
+      caloriegoal: '',
+      dietaryPreferences: '',
+      isAdmin: false
+    });
+
+    // Redirect to the dashboard
+    router.push({ name: '/dashboard/' });
+  }
+};
 </script>
 
 <template>
-<div class="modal" :class="{ 'is-active': isOpen }">
+<div class="modal" :class="{ 'is-active': isOpen }" id="TOS">
   <div class="modal-background"></div>
 
   <div class="modal-content">
@@ -133,107 +286,203 @@ const isOpen = ref(false)
     @click="isOpen = false"></button>
 </div>
 
-<div class="level-item">
+<div class="level-item" id="signup-form">
   <div class="column is-half">
     <div class="container">
-      <div class="card">
-  <div class="card-content">
-    <div class="content">
-      <div>
-        <div class="field">
-  <label class="label">First Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="First Name">
+       <!-- Step 1: Account Information -->
+       <div v-if="step === 1">
+    <h2 class="title">Create Your Account</h2>
+    <br>
+
+    <!-- First Name -->
+    <div class="field">
+      <label class="label">First Name</label>
+      <div class="control">
+        <input v-model="accountInfo.firstName" class="input" type="text" placeholder="First Name" />
+      </div>
+      <p class="help is-danger">{{ errors.firstName }}</p>
+    </div>
+
+    <!-- Last Name -->
+    <div class="field">
+      <label class="label">Last Name</label>
+      <div class="control">
+        <input v-model="accountInfo.lastName" class="input" type="text" placeholder="Last Name" />
+      </div>
+      <p class="help is-danger">{{ errors.lastName }}</p>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="field">
+      <label class="label">Date of Birth</label>
+      <div class="control">
+        <input v-model="accountInfo.dob" class="input" type="date" />
+      </div>
+      <p class="help is-danger">{{ errors.dob }}</p>
+    </div>
+
+    <!-- Sex -->
+    <div class="field">
+      <label class="label">Sex</label>
+      <div class="control">
+        <label class="radio">
+          <input v-model="accountInfo.sex" type="radio" value="Male" />
+          <!-- eslint-disable-next-line vue/no-parsing-error -->
+          Male&nbsp
+        </label>
+        <label class="radio">
+          <input v-model="accountInfo.sex" type="radio" value="Female" />
+          <!-- eslint-disable-next-line vue/no-parsing-error -->
+          Female&nbsp
+        </label>
+        <label class="radio">
+          <input v-model="accountInfo.sex" type="radio" value="Female" />
+          Prefer not to answer
+        </label>
+      </div>
+      <p class="help is-danger">{{ errors.sex }}</p>
+    </div>
+
+    <!-- Email -->
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input v-model="accountInfo.email" class="input" type="email" placeholder="Email" />
+      </div>
+      <p class="help is-danger">{{ errors.email }}</p>
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input v-model="accountInfo.password" class="input" type="password" placeholder="Enter Password" />
+      </div>
+      <p class="help is-danger">{{ errors.password }}</p>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field">
+      <label class="label">Confirm Password</label>
+      <div class="control">
+        <input v-model="accountInfo.confirmPassword" class="input" type="password" placeholder="Confirm Password" />
+      </div>
+      <p class="help is-danger">{{ errors.confirmPassword }}</p>
+    </div>
+
+    <!-- Membership Type -->
+    <div class="field">
+      <label class="label">Membership Type</label>
+      <div class="control">
+        <div class="select">
+          <select v-model="accountInfo.membershipType">
+            <option value="">Select Membership</option>
+            <option value="Free Membership">Free Membership</option>
+            <option value="Standard Membership">Standard Membership ($9.99)</option>
+            <option value="Membership+">Membership+ ($15.99)</option>
+          </select>
+        </div>
+      </div>
+      <p class="help is-danger">{{ errors.membershipType }}</p>
+    </div>
+
+      <!-- Agree Terms -->
+    <div class="field">
+      <label class="checkbox">
+        <input v-model="accountInfo.agreeTerms" type="checkbox" />
+        I agree to the <button class="js-modal-button" @click="isOpen = true"><i>terms and conditions</i></button>.
+      </label>
+      <p class="help is-danger">{{ errors.agreeTerms }}</p>
+    </div>
+
+      <button class="button is-link" @click="nextStep">Next</button>
+    </div>
+
+    <!-- Step 2: Profile Information -->
+    <div v-if="step === 2">
+  <h2 class="title">Build Your Profile</h2>
+
+  <!-- Profile Name -->
+  <div class="field">
+    <label class="label">Profile Name</label>
+    <div class="control">
+      <input v-model="profileInfo.profileName" class="input" type="text" placeholder="Profile Name" />
+    </div>
+    <p class="help is-danger">{{ errors.profileName }}</p>
   </div>
-</div>
 
-<div class="field">
-  <label class="label">Last Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Last Name">
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Date of Birth</label>
-  <div class="control">
-    <input class="input" type="date" placeholder="Last Name">
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email input">
-    <span class="icon is-small is-left">
-      <i class="far fa-envelope"></i>
-    </span>
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Password</label>
-  <div class="control has-icons-left">
-    <input class="input" type="password"  placeholder="Enter Password">
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-</div>
-</div>
-
-<div class="field">
-  <label class="label">Confirm Password</label>
-  <div class="control has-icons-left">
-    <input class="input" type="password"  placeholder="Enter Password">
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-</div>
-</div>
-
-<div class="field">
-  <label class="label">Membership Type</label>
-  <div class="control">
-    <div class="select">
-      <select>
-        <option>Free Membership</option>
-        <option>Standard Membership (9.99)</option>
-        <option>Membership+ (15.99)</option>
-      </select>
+  <!-- Profile Picture -->
+  <div class="field">
+    <label class="label">Profile Picture</label>
+    <div class="control">
+      <input v-model="profileInfo.profilePicture" class="input" type="url" placeholder="Profile Picture URL" />
     </div>
   </div>
-</div>
 
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input type="checkbox">
-      I agree to the&nbsp; <!-- &nbsp non break space character -->
-    </label>
-
-    <button class="js-modal-trigger"
-    :class="{ 'is-active': isOpen }" @click="isOpen = !isOpen">
-        <p class="has-text-weight-bold">terms and conditions</p>
-      </button>
-  </div>
-</div>
-
-<div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">Submit</button>
-  </div>
-  <RouterLink to="/">
-  <div class="control">
-    <button class="button is-link is-light">Cancel</button>
-  </div>
-</RouterLink>
-</div>
-</div>
+  <!-- Bio -->
+  <div class="field">
+    <label class="label">Bio</label>
+    <div class="control">
+      <textarea v-model="profileInfo.bio" class="textarea" placeholder="Tell us about yourself"></textarea>
     </div>
   </div>
+
+  <!-- Fitness Goals -->
+  <div class="field">
+    <label class="label">Fitness Goals</label>
+    <div class="control">
+      <textarea v-model="profileInfo.fitnessGoals" class="textarea" placeholder="What are your fitness goals?"></textarea>
+    </div>
+  </div>
+
+  <!-- Height -->
+  <div class="field">
+    <label class="label">Height (cm)</label>
+    <div class="control">
+      <input v-model="profileInfo.height" class="input" type="number" min="0" placeholder="Enter height in cm" />
+    </div>
+  </div>
+
+  <!-- Weight -->
+  <div class="field">
+    <label class="label">Weight (kg)</label>
+    <div class="control">
+      <input v-model="profileInfo.weight" class="input" type="number" min="0" placeholder="Enter weight in kg" />
+    </div>
+  </div>
+
+  <!-- Calorie Goal -->
+  <div class="field">
+    <label class="label">Daily Calorie Goal</label>
+    <div class="control">
+      <input v-model="profileInfo.calorieGoal" class="input" type="number" min="0" placeholder="Enter daily calorie goal" />
+    </div>
+  </div>
+
+  <!-- Dietary Preference -->
+  <div class="field">
+    <label class="label">Dietary Preference</label>
+    <div class="control">
+      <div class="select">
+        <select v-model="profileInfo.dietaryPreference">
+          <option value="">Select dietary preference</option>
+          <option value="Vegetarian">Vegetarian</option>
+          <option value="Vegan">Vegan</option>
+          <option value="Keto">Keto</option>
+          <option value="Paleo">Paleo</option>
+          <option value="No Preference">No Preference</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="button is-link is-light" @click="previousStep">Back</button>
+    <button class="button is-link" @click="submitSignUp">Submit</button>
+  </div>
 </div>
-    </div>
-    </div>
+  </div>
+  </div>
   </div>
 
 </template>

@@ -11,6 +11,8 @@
         <div class="column">
           <p class="title">Welcome to Samurai Fitness</p>
           <p class="subtitle">Wake up Samurai, we've got calories to burn</p>
+          <br>
+          <p>Please log in or create an account to begin your fitness journey</p>
         </div>
         <!-- Image Column -->
         <div class="column" id="img">
@@ -31,4 +33,3 @@
   justify-content: right;
 }
 </style>
-

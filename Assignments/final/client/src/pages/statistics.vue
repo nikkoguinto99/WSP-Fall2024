@@ -1,116 +1,129 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<!-- eslint-disable vue/no-export-in-script-setup -->
 <script setup lang="ts">
+import { useUserStore } from "@/models/userStore"; // Adjust path if necessary
+import statisticsData from "@/data/statistics.json"; // Adjust path if necessary
 
+const { state } = useUserStore();
+const user = state.user;
+
+// Get the logged-in user's statistics
+const userStats = statisticsData.statistics.find((stat) => stat.userID === user?.id);
+
+// Define maximum values for progress bar normalization
+const MAX_CALORIES_BURNED = 500;
+const MAX_CALORIES_CONSUMED = 2500;
+const MAX_EXERCISE_TIME = 180; // minutes
+const MAX_EXERCISE_COUNT = 10;
+const MAX_WEEKLY_EXERCISE_TIME = 1000; // minutes
 </script>
 
 <template>
-  <div class="columns">
-  <div class="column is-one-third" id="Food Column">
-    <div class="box">
-      <label for="Title" class="label">Nutrition</label>
+  <div class="statistics-page">
+    <div class="container">
+      <!-- Page Header -->
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">{{ user?.profileName }}'s Statistics</p>
+        </div>
+      </section>
 
-    <div class="box">
-      <label for="Title" class="label">Calories Consumed</label>
-        <progress class="progress is-link" value="15" max="100">
-          15%
-        </progress>
-    </div>
+      <!-- Statistics Content -->
+      <div class="columns mt-5">
+        <!-- Daily Stats -->
+        <div class="column is-half">
+          <div class="box">
+            <h2 class="title is-4">Daily Stats</h2>
+            <div v-if="userStats">
+              <div class="stat-item">
+                <p class="has-text-weight-bold">Calories Burned</p>
+                <progress
+                  class="progress is-success"
+                  :value="userStats.dailyStats.caloriesBurned"
+                  :max="MAX_CALORIES_BURNED"
+                >
+                </progress>
+                <p>{{ userStats.dailyStats.caloriesBurned }} / {{ MAX_CALORIES_BURNED }}</p>
+              </div>
 
-    <div class="box">
-      <label for="Title" class="label">Protein</label>
-        <progress class="progress is-link" value="30" max="100">
-          30%
-        </progress>
-    </div>
+              <div class="stat-item">
+                <p class="has-text-weight-bold">Calories Consumed</p>
+                <progress
+                  class="progress is-info"
+                  :value="userStats.dailyStats.caloriesConsumed"
+                  :max="MAX_CALORIES_CONSUMED"
+                >
+                </progress>
+                <p>{{ userStats.dailyStats.caloriesConsumed }} / {{ MAX_CALORIES_CONSUMED }}</p>
+              </div>
 
-    <div class="box">
-      <label for="Title" class="label">Carbohydrates</label>
-        <progress class="progress is-link" value="45" max="100">
-          45%
-        </progress>
-    </div>
+              <div class="stat-item">
+                <p class="has-text-weight-bold">Exercise Time (minutes)</p>
+                <progress
+                  class="progress is-warning"
+                  :value="userStats.dailyStats.exerciseTimeMinutes"
+                  :max="MAX_EXERCISE_TIME"
+                >
+                </progress>
+                <p>{{ userStats.dailyStats.exerciseTimeMinutes }} / {{ MAX_EXERCISE_TIME }}</p>
+              </div>
 
-    <div class="box">
-      <label for="Title" class="label">Fat</label>
-        <progress class="progress is-link" value="60" max="100">
-          60%
-        </progress>
-    </div>
+              <div class="stat-item">
+                <p class="has-text-weight-bold">Exercise Count</p>
+                <progress
+                  class="progress is-danger"
+                  :value="userStats.dailyStats.exerciseCount"
+                  :max="MAX_EXERCISE_COUNT"
+                >
+                </progress>
+                <p>{{ userStats.dailyStats.exerciseCount }} / {{ MAX_EXERCISE_COUNT }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="box">
-      <label for="Title" class="label">Sugar</label>
-        <progress class="progress is-link" value="75" max="100">
-          75%
-        </progress>
-    </div>
-
-  </div>
-
-  </div>
-  <div class="column" id="Exercise Column">
-    <div class="box">
-      <label for="Title" class="label">Exercise</label>
-
-      <div class="box">
-        <label for="Title" class="label">Calories Burned</label>
-          <progress class="progress is-link" value="15" max="100">
-            15%
-          </progress>
+        <!-- Weekly Stats -->
+        <div class="column is-half">
+          <div class="box">
+            <h2 class="title is-4">Weekly Stats</h2>
+            <div v-if="userStats">
+              <div class="stat-item">
+                <p class="has-text-weight-bold">Total Exercise Time (minutes)</p>
+                <progress
+                  class="progress is-primary"
+                  :value="userStats.weeklyStats.totalExerciseTimeMinutes"
+                  :max="MAX_WEEKLY_EXERCISE_TIME"
+                >
+                </progress>
+                <p>{{ userStats.weeklyStats.totalExerciseTimeMinutes }} / {{ MAX_WEEKLY_EXERCISE_TIME }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="box">
-        <label for="Title" class="label">Steps Taken</label>
-          <progress class="progress is-link" value="30" max="100">
-            30%
-          </progress>
-      </div>
-
-      <div class="box">
-        <label for="Title" class="label">Distance Traveled</label>
-          <progress class="progress is-link" value="45" max="100">
-            45%
-          </progress>
-      </div>
-
-      <div class="box">
-        <label for="Title" class="label">Active Minutes</label>
-          <progress class="progress is-link" value="60" max="100">
-            60%
-          </progress>
+      <!-- No Stats Fallback -->
+      <div v-if="!userStats" class="notification is-warning">
+        <p>No statistics available for this user.</p>
       </div>
     </div>
-  </div>
-  <div class="column" id="Resting Column">
-    <div class="box">
-      <label for="Title" class="label">Rest</label>
-
-      <div class="box">
-        <label for="Title" class="label">Hours Slept</label>
-          <progress class="progress is-link" value="15" max="100">
-            15%
-          </progress>
-      </div>
-
-      <div class="box">
-        <label for="Title" class="label">Resting Heart Rate</label>
-          <progress class="progress is-link" value="30" max="100">
-            30%
-          </progress>
-      </div>
-
-      <div class="box">
-        <label for="Title" class="label">Hours Stretched</label>
-          <progress class="progress is-link" value="45" max="100">
-            45%
-          </progress>
-      </div>
-
-    </div>
-
-  </div>
   </div>
 </template>
 
 <style scoped>
+.statistics-page {
+  padding: 20px;
+}
 
+.hero-body {
+  text-align: center;
+}
+
+.box {
+  padding: 20px;
+}
+
+.stat-item {
+  margin-bottom: 20px;
+}
 </style>

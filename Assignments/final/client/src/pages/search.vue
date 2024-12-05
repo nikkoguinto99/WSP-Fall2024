@@ -1,85 +1,90 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<script setup lang="ts">
-import { ref, computed } from 'vue';
-import userStore from '@/models/userStore'; // Adjust path as needed
-import userData from '../data/users.json'; // Adjust path as needed
-
-// Reactive data and state for search
-const searchQuery = ref('');
-const users = userData.users;
-
-// Computed property to filter users based on search query
-const filteredUsers = computed(() => {
-  return searchQuery.value
-    ? users.filter(user =>
-        user.username.toLowerCase().includes(searchQuery.value.toLowerCase())
-      )
-    : [];
-});
-
-// Computed property to check if a user is signed in
-const isSignedIn = computed(() => !!userStore.state.user);
-
-// Profile picture URL generator
-const getProfileUrl = (filename: string) =>
-  new URL(`../assets/photos/Pfps/${filename}`, import.meta.url).href;
-</script>
-
 <template>
-  <div v-if="isSignedIn">
-    <h1>Search Users by Username</h1>
-
-    <div class="field">
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          v-model="searchQuery"
-          placeholder="Search for a username..."
-        />
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Search Users</h1>
+      <!-- Search Bar -->
+      <div class="field">
+        <div class="control has-icons-left">
+          <input
+            v-model="searchQuery"
+            class="input"
+            type="text"
+            placeholder="Search by username"
+          />
+          <span class="icon is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
       </div>
-    </div>
-
-    <table class="table is-striped is-fullwidth" v-if="filteredUsers.length">
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>Profile Picture</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in filteredUsers" :key="user.id">
-          <td>{{ user.id }}</td>
-          <td>
-            <figure class="image is-48x48">
+      <!-- User List -->
+      <div v-if="searchQuery.trim() !== ''" class="columns is-multiline">
+        <div
+          v-for="user in filteredUsers"
+          :key="user.id"
+          class="column is-one-third"
+        >
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
                 <img
-                  v-if="user.profilePicture"
-                  :src="getProfileUrl(user.profilePicture)"
-                  alt="Profile Picture"
+                  :src="getImageUrl(user.profilePic)"
+                  :alt="user.profileName"
                 />
               </figure>
-          </td>
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.username }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p v-else-if="searchQuery">No users found matching "{{ searchQuery }}"</p>
-  </div>
-
-  <!-- Fallback message if user is not signed in -->
-  <div v-else>
-    <p>You must be signed in to search for users.</p>
-  </div>
+            </div>
+            <div class="card-content">
+              <p class="title is-4">{{ user.profileName }}</p>
+              <p class="subtitle is-6">{{ user.firstName }} {{ user.lastName }}</p>
+              <p class="content">{{ user.bio }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p v-else class="has-text-centered mt-5">Please enter a username to search.</p>
+    </div>
+  </section>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+import usersData from "../data/users.json"; // Adjust the path to your users.json file
+
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  profileName: string;
+  profilePic: string;
+  bio: string;
+}
+
+export default defineComponent({
+  name: "SearchUsersPage",
+  data() {
+    return {
+      searchQuery: "",
+      users: usersData.items as User[], // Access the `items` key in users.json
+    };
+  },
+  computed: {
+    filteredUsers(): User[] {
+      return this.users.filter((user) =>
+        user.profileName
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase())
+      );
+    },
+  },
+  methods: {
+    getImageUrl(profilePic: string): string {
+      return `/src/assets/photos/Pfps/${profilePic}`;
+    },
+  },
+});
+</script>
+
 <style scoped>
-.table {
-  margin-top: 20px;
+.card {
+  margin-bottom: 2rem;
 }
 </style>

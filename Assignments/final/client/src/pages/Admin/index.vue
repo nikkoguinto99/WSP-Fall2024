@@ -1,94 +1,110 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-<script setup lang="ts">
-import { computed } from 'vue';
-import userStore from '@/models/userStore'; // Adjust the path as needed
-import userData from '../../data/users.json';
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import { useUserStore } from '@/models/userStore';
 
-const users = userData.users;
+export default defineComponent({
+  name: 'AdminPage',
+  setup() {
+    const userStore = useUserStore();
 
-// Computed property to check if the current user is an admin
-const isAdmin = computed(() => userStore.state.user?.isAdmin || false);
+    // Check if the user is an admin
+    const isAdmin = computed(() => userStore.state.user?.isAdmin === true);
 
-// Profile picture URL generator
-const getProfileUrl = (filename: string) =>
-  new URL(`../../assets/photos/Pfps/${filename}`, import.meta.url).href;
+    return {
+      isAdmin,
+    };
+  },
+});
 </script>
 
 <template>
   <div v-if="isAdmin">
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li><RouterLink to="../">Home Page</RouterLink></li>
-        <li><RouterLink to="./">Admin</RouterLink></li>
-        <li><RouterLink to="./">Users</RouterLink></li>
-      </ul>
-    </nav>
+    <h1 class="title">Admin Dashboard</h1>
 
-    <h1>User Information</h1>
+    <div class="columns is-multiline">
+      <!-- First Row (User Management & Content Management Cards) -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">User Management</p>
+            <p class="subtitle">Manage users and their permissions</p>
+            <div class="content">
+              <RouterLink to="/admin/userlist" class="button is-link is-fullwidth">Go to User List</RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div>
-      <button class="button is-primary">Add New User</button>
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">Class Management</p>
+            <p class="subtitle">Edit and update site content</p>
+            <div class="content">
+              <RouterLink to="/admin/classlist" class="button is-link is-fullwidth">Manage Content</RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <table class="table is-striped is-fullwidth">
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Profile Picture</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Membership</th>
-            <th>Admin</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.id }}</td>
-            <td>
-              <figure class="image is-48x48">
-                <img
-                  v-if="user.profilePicture"
-                  :src="getProfileUrl(user.profilePicture)"
-                  alt="Profile Picture"
-                />
-              </figure>
-            </td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.dob }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.membership }}</td>
-            <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
-            <td>
-              <button class="button is-small is-info">Edit</button>
-              <button class="button is-small is-danger">Remove</button>
-            </td>
-          </tr>
-          <tr v-if="!users.length">
-            <td colspan="10">No users available</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Second Row (Analytics & Settings Cards) -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">Post Management</p>
+            <p class="subtitle">View different user posts and delete them if they are flagged/reported</p>
+            <div class="content">
+              <RouterLink to="/admin/analytics" class="button is-link is-fullwidth">View User Posts</RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <p class="title">Activity Log</p>
+            <p class="subtitle">View activity on this website</p>
+            <div class="content">
+              <RouterLink to="/admin/settings" class="button is-link is-fullwidth">View Website Activity</RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Fallback message if user is not an admin -->
+  <!-- If not admin, show access denied message -->
   <div v-else>
-    <p>You do not have access to view this page.</p>
-    <p>Please sign in as Nicholas Guinto using these credentials</p>
-    <p>Username: itsnikkoguinto</p>
-    <p>Password: Nikko</p>
+    <h1 class="title has-text-danger">Access Denied</h1>
+    <p>You do not have permission to view this page.</p>
     <br>
-    <p>There are 6 users total currently. Each user has a unique username with their password being the first name with the first letter capital!</p>
+    <p>DEMO: To view this page, please log in using the following credentials:</p>
+    <p><strong>Username:</strong> Admin</p>
+    <p><strong>Password:</strong> Admin</p>
   </div>
 </template>
 
 <style scoped>
-.table {
+.card {
+  margin-bottom: 20px;
+}
+
+.card .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card .subtitle {
+  font-size: 1.1rem;
+  color: #7a7a7a;
+}
+
+.column {
+  padding: 0;
+}
+
+.columns {
   margin-top: 20px;
 }
 </style>
