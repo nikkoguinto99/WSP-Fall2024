@@ -55,3 +55,4 @@ This documents provides notes and other documentation to allow for replication i
 - Ran npm run build
 
 - Server Development
+    - Use Professor Plotkin Repo as ref
