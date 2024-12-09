@@ -1,6 +1,33 @@
 import { ref } from 'vue';
 import postData from '@/data/posts.json';
 import userData from '@/data/users.json';
+import type { DataListEnvelope } from '@/models/dataEnvelope';
+
+/**
+ * @template T
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
+ */
+
+/**
+ * @returns {Promise<DataListEnvelope<Post>>}
+ */
+export function getAll(): DataListEnvelope<Post> {
+  try {
+    return {
+      data: postData.items.map(post => ({ ...post, likedByCurrentUser: false })),
+      isSuccess: true
+    };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return {
+      data: [],
+      message: 'Failed to load posts.',
+      isSuccess: false
+    };
+  }
+}
+
 
 export interface Comment {
   id: number;
