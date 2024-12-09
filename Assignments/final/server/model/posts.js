@@ -43,6 +43,12 @@ async function add(post) {
     return { data: post, isSuccess: true }
 }
 
+async function seed() {
+    for (const product of data.items) {
+        await add(product)
+    }
+}
+
 /**
  * Update a post
  * @param {number} id
@@ -78,4 +84,5 @@ module.exports = {
     add,
     update,
     remove,
+    seed,
 }

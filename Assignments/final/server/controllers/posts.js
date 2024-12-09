@@ -42,4 +42,10 @@ app.get("/", (req, res, next) => {
             .then((x) => res.send(x))
             .catch(next)
     })
+    .post("/seed", (req, res, next) => {
+        model
+            .seed()
+            .then((x) => res.send(x))
+            .catch(next)
+    })
 module.exports = app
