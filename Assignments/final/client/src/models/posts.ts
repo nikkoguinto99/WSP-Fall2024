@@ -2,6 +2,7 @@ import { ref } from 'vue';
 import postData from '@/data/posts.json';
 import userData from '@/data/users.json';
 import type { DataListEnvelope } from '@/models/dataEnvelope';
+import { rest } from './myFetch'
 
 /**
  * @template T
@@ -9,25 +10,9 @@ import type { DataListEnvelope } from '@/models/dataEnvelope';
  * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
 
-/**
- * @returns {Promise<DataListEnvelope<Post>>}
- */
-export function getAll(): DataListEnvelope<Post> {
-  try {
-    return {
-      data: postData.items.map(post => ({ ...post, likedByCurrentUser: false })),
-      isSuccess: true
-    };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    return {
-      data: [],
-      message: 'Failed to load posts.',
-      isSuccess: false
-    };
-  }
+export async function getAll() {
+  return rest<DataListEnvelope<Post>>('http://localhost:3000/api/v1/posts')
 }
-
 
 export interface Comment {
   id: number;
