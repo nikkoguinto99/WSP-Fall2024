@@ -1,6 +1,8 @@
 /** @type {{ items: Post[] }} */
 // @ts-ignore
 const data = require("../data/posts.json")
+const { getConnection } = require("./supabase")
+const conn = getConnection()
 
 /**
  * @template T
