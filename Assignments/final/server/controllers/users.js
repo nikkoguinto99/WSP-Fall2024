@@ -12,31 +12,37 @@ const app = express.Router()
 // @ts-ignore
 app.get("/", (req, res, next) => {
     res.send(model.getAll())
+    model
+        .getAll()
+        .then((x) => res.send(x))
+        .catch(next)
 })
     .get("/:id", (req, res, next) => {
         const id = req.params.id
         // @ts-ignore
-        const user = model.get(id)
-        res.send(user)
+        model
+            .get(+id)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .post("/", (req, res, next) => {
-        const user = model.add(req.body)
-        res.send(user)
+        model
+            .add(req.body)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .patch("/:id", (req, res, next) => {
         const id = req.params.id
-        // @ts-ignore
-        const user = model.update(id, req.body)
-        res.send(user)
+        model
+            .update(+id, req.body)
+            .then((x) => res.send(x))
+            .catch(next)
     })
     .delete("/:id", (req, res, next) => {
         const id = req.params.id
-        // @ts-ignore
-        try {
-            const ret = model.remove(+id)
-            res.send(ret)
-        } catch (err) {
-            next(err.message)
-        }
+        model
+            .remove(+id)
+            .then((x) => res.send(x))
+            .catch(next)
     })
 module.exports = app

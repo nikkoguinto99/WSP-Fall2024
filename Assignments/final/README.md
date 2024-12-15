@@ -12,3 +12,8 @@ NPM steps described as per Professor Plotkin
 9. Add Prettier: Yes
 10. Add Vue DevTools: Yes
 ```
+
+pnpm i vite@latest
+    Select React
+    Add Typescript + SWC
+    

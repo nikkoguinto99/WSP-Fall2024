@@ -2,59 +2,78 @@
 const data = require("../data/users.json")
 
 /**
- * @typedef {import("../../client/src/models/users").User} User
- */
-/**
- * Get all users
- * @returns {User[]}
+ * @template T
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
 
-function getAll() {
-    return data.items
+/**
+ * @typedef {import("../../client/src/models/users").User} User
+ */
+
+/**
+ * Get all users
+ * @returns {Promise<DataListEnvelope<User>>}
+ */
+async function getAll() {
+    return { data: data.items, isSuccess: true }
 }
 
 /**
  * Get a user by id
  * @param {number} id
- * @returns {User}
+ * @returns {Promise<DataEnvelope<User>>}
  */
-function get(id) {
-    return data.items.find((user) => user.id == id)
+async function get(id) {
+    const user = data.items.find((user) => user.id == id)
+    return { data: user, isSuccess: !!user }
 }
 
 /**
  * Add a new user
  * @param {User} user
- * @returns {User}
+ * @returns {Promise<DataEnvelope<User>>}
  */
-function add(user) {
+async function add(user) {
     user.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
     data.items.push(user)
-    return user
+    return { data: user, isSuccess: true }
 }
 
 /**
  * Update a user
  * @param {number} id
  * @param {User} user
- * @returns {User}
+ * @returns {Promise<DataEnvelope<User>>}
  */
-function update(id, user) {
-    const userToUpdate = get(id)
+async function update(id, user) {
+    const userToUpdate = data.items.find((user) => user.id == id)
+    if (!userToUpdate) {
+        return { data: null, isSuccess: false }
+    }
     Object.assign(userToUpdate, user)
-    return userToUpdate
+    return { data: userToUpdate, isSuccess: true }
 }
 
 /**
  * Remove a user
  * @param {number} id
- * @returns {{ success: boolean, message: string, id: number }}
+ * @returns {Promise<DataEnvelope<{ success: boolean, message: string, id: number }>>}
  */
-function remove(id) {
+async function remove(id) {
     const userIndex = data.items.findIndex((user) => user.id == id)
+    if (userIndex === -1) {
+        throw {
+            isSuccess: false,
+            message: "Item not found",
+            data: id,
+            status: 404,
+        }
+    }
     data.items.splice(userIndex, 1)
-    return { success: true, message: "User deleted", id: id }
+    return { data: { success: true, message: "User deleted", id: id }, isSuccess: true }
 }
+
 module.exports = {
     getAll,
     get,

@@ -1,6 +1,31 @@
 import { ref } from 'vue';
 import postData from '@/data/posts.json';
 import userData from '@/data/users.json';
+import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
+import { api } from './myfetch'
+
+/**
+ * @template T
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
+ */
+
+export async function getAll() {
+  return api<DataListEnvelope<Post>>('posts')
+}
+
+export async function getById(id: number) {
+  return api<DataEnvelope<Post>>(`posts/${id}`)
+}
+export function create(Post: Post) {
+  return api<DataEnvelope<Post>>('posts', Post)
+}
+export function update(Post: Post) {
+  return api<DataEnvelope<Post>>(`posts/${Post.id}`, Post, 'PATCH')
+}
+export function remove(id: number) {
+  return api<DataEnvelope<Post>>(`posts/${id}`, undefined, 'DELETE');
+}
 
 export interface Comment {
   id: number;
@@ -30,18 +55,18 @@ export interface User {
   profilePic: string;
 }
 
-export const usePosts = () => {
+export const useposts = () => {
   // Load data directly from the imported JSON file
   const posts = ref<Post[]>(postData.items.map(post => ({ ...post, likedByCurrentUser: false })) || []);
   const users = ref<User[]>(userData.items || []);
 
   // Temporary array to store deleted posts in memory
-  const deletedPosts = ref<number[]>([]);
+  const deletedposts = ref<number[]>([]);
 
   // Function to map posts to include user details
-  const mapPostsToUserDetails = () => {
+  const mappostsToUserDetails = () => {
     return posts.value
-      .filter(post => !deletedPosts.value.includes(post.id)) // Exclude deleted posts
+      .filter(post => !deletedposts.value.includes(post.id)) // Exclude deleted posts
       .map(post => {
         const user = users.value.find(user => user.id === post.userID);
         return {
@@ -53,17 +78,17 @@ export const usePosts = () => {
   };
 
   // Get posts with user details
-  const postsWithUserDetails = ref(mapPostsToUserDetails());
+  const postsWithUserDetails = ref(mappostsToUserDetails());
 
   // Sort posts by date in descending order
   postsWithUserDetails.value.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Function to delete a post during the session
   const deletePost = (postId: number) => {
-    // Add the post ID to the deletedPosts array
-    deletedPosts.value.push(postId);
+    // Add the post ID to the deletedposts array
+    deletedposts.value.push(postId);
     // Re-map the posts to exclude the deleted posts
-    postsWithUserDetails.value = mapPostsToUserDetails();
+    postsWithUserDetails.value = mappostsToUserDetails();
   };
 
   // Function to like a post
@@ -72,7 +97,7 @@ export const usePosts = () => {
     if (post) {
       post.likes++; // Increment the like count
       // Re-map the posts to include updated user details
-      postsWithUserDetails.value = mapPostsToUserDetails();
+      postsWithUserDetails.value = mappostsToUserDetails();
     }
   };
 
