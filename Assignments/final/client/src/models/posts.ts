@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import postData from '@/data/posts.json';
 import userData from '@/data/users.json';
 import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
-import { api } from './myfetch'
+import { api } from './myFetch'
 
 /**
  * @template T

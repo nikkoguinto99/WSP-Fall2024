@@ -1,11 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { usePosts } from '@/models/posts';
+import { useposts } from '@/models/posts';
 import { useUserStore } from '@/models/userStore';
 import PostList from '@/components/PostList.vue';
 
 // Get posts and user data
-const { posts, deletePost } = usePosts();
+const { posts, deletePost } = useposts();
 const userStore = useUserStore();
 const user = userStore.state.user; // Current logged-in user
 
@@ -17,7 +17,7 @@ const getProfilePictureUrl = (filename: string) => new URL(`../assets/photos/Pfp
 
 // Handle post liking
 const likePost = (postId: number) => {
-  const post = posts.value.find((post) => post.id === postId);
+  const post = posts.value.find((post: { id: number; }) => post.id === postId);
   if (post) {
     post.likes += 1;
     post.likedByCurrentUser = true;
