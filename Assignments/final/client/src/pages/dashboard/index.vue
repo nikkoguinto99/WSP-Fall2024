@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useUserStore } from '@/models/userStore';
-import { usePosts } from '@/models/posts';
+import { useposts } from '@/models/posts';
 import { useUsers } from '@/models/users';
 import { computed, ref } from 'vue';
 import DashBar from '@/components/DashBar.vue';
@@ -11,13 +11,13 @@ import PostList from '@/components/PostList.vue';
 
 // User and post data
 const { state: userState } = useUserStore();
-const { posts, deletePost } = usePosts();
+const { posts, deletePost } = useposts();
 useUsers();
 
 // Get the current user's posts
 const userPosts = computed(() => {
   if (!userState.user) return [];
-  return posts.value.filter((post) => post.userID === userState.user?.id);
+  return posts.value.filter((post: { userID: number }) => post.userID === userState.user?.id);
 });
 
 // Handle post deletion
