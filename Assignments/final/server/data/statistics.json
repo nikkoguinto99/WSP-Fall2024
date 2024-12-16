@@ -1,0 +1,88 @@
+{
+  "statistics": [
+    {
+      "userID": 1,
+      "dailyStats": {
+        "caloriesBurned": 500,
+        "caloriesConsumed": 2000,
+        "exerciseTimeMinutes": 60,
+        "exerciseCount": 2
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 420
+      }
+    },
+    {
+      "userID": 2,
+      "dailyStats": {
+        "caloriesBurned": 450,
+        "caloriesConsumed": 1800,
+        "exerciseTimeMinutes": 50,
+        "exerciseCount": 1
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 350
+      }
+    },
+    {
+      "userID": 3,
+      "dailyStats": {
+        "caloriesBurned": 600,
+        "caloriesConsumed": 2200,
+        "exerciseTimeMinutes": 70,
+        "exerciseCount": 3
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 490
+      }
+    },
+    {
+      "userID": 4,
+      "dailyStats": {
+        "caloriesBurned": 400,
+        "caloriesConsumed": 1900,
+        "exerciseTimeMinutes": 45,
+        "exerciseCount": 1
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 315
+      }
+    },
+    {
+      "userID": 5,
+      "dailyStats": {
+        "caloriesBurned": 550,
+        "caloriesConsumed": 2100,
+        "exerciseTimeMinutes": 65,
+        "exerciseCount": 2
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 455
+      }
+    },
+    {
+      "userID": 6,
+      "dailyStats": {
+        "caloriesBurned": 480,
+        "caloriesConsumed": 2000,
+        "exerciseTimeMinutes": 55,
+        "exerciseCount": 2
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 385
+      }
+    },
+    {
+      "userID": 7,
+      "dailyStats": {
+        "caloriesBurned": 520,
+        "caloriesConsumed": 1950,
+        "exerciseTimeMinutes": 60,
+        "exerciseCount": 2
+      },
+      "weeklyStats": {
+        "totalExerciseTimeMinutes": 420
+      }
+    }
+  ]
+}
