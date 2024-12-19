@@ -1,3 +1,4 @@
+// @ts-nocheck
 const model = require("../model/users")
 const express = require("express")
 const app = express.Router()
@@ -22,6 +23,13 @@ app.get("/", (req, res, next) => {
         // @ts-ignore
         model
             .get(+id)
+            .then((x) => res.send(x))
+            .catch(next)
+    })
+    .get("/search", (req, res, next) => {
+        const query = req.query.q
+        model
+            .search(query)
             .then((x) => res.send(x))
             .catch(next)
     })

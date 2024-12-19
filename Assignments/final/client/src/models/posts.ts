@@ -17,8 +17,8 @@ export async function getAll() {
 export async function getById(id: number) {
   return api<DataEnvelope<Post>>(`posts/${id}`)
 }
-export function create(Post: Post) {
-  return api<DataEnvelope<Post>>('posts', Post)
+export function create(post: Post) {
+  return api<DataEnvelope<Post>>('posts', post)
 }
 export function update(Post: Post) {
   return api<DataEnvelope<Post>>(`posts/${Post.id}`, Post, 'PATCH')
@@ -27,6 +27,7 @@ export function remove(id: number) {
   return api<DataEnvelope<Post>>(`posts/${id}`, undefined, 'DELETE');
 }
 
+
 export interface Comment {
   id: number;
   userID: number;
@@ -34,6 +35,7 @@ export interface Comment {
 }
 
 export interface Post {
+  [x: string]: unknown;
   id: number;
   caption: string;
   image: string;
@@ -62,6 +64,11 @@ export const useposts = () => {
 
   // Temporary array to store deleted posts in memory
   const deletedposts = ref<number[]>([]);
+
+  const addPost = (post: Post) => {
+    posts.value.push(post);
+    postsWithUserDetails.value = mappostsToUserDetails();
+  };
 
   // Function to map posts to include user details
   const mappostsToUserDetails = () => {
@@ -101,5 +108,5 @@ export const useposts = () => {
     }
   };
 
-  return { posts: postsWithUserDetails, deletePost, likePost };
+  return { posts: postsWithUserDetails, deletePost, likePost, addPost };
 };

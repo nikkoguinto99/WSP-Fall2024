@@ -1,10 +1,11 @@
+// @ts-nocheck
 /** @type {{ items: User[] }} */
 const data = require("../data/users.json")
 
 /**
  * @template T
- * @typedef {import("../../Client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
- * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
+ * @typedef {import("../../client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
+ * @typedef {import("../../client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
  */
 
 /**
@@ -63,16 +64,23 @@ async function update(id, user) {
 async function remove(id) {
     const userIndex = data.items.findIndex((user) => user.id == id)
     if (userIndex === -1) {
-        throw {
-            isSuccess: false,
-            message: "Item not found",
-            data: id,
-            status: 404,
-        }
+        return { data: { success: false, message: "User not found", id: id }, isSuccess: false }
     }
     data.items.splice(userIndex, 1)
     return { data: { success: true, message: "User deleted", id: id }, isSuccess: true }
 }
+
+/**
+ * Search users by username
+ * @param {string} query
+ * @returns {Promise<DataListEnvelope<User>>}
+ */
+async function search(query) {
+    const users = data.items.filter((user) => user.username.includes(query))
+    return { data: users, isSuccess: true }
+  }
+  
+  
 
 module.exports = {
     getAll,
@@ -80,4 +88,5 @@ module.exports = {
     add,
     update,
     remove,
+    search,
 }

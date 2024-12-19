@@ -9,3 +9,5 @@ function getConnection() {
 }
 
 module.exports = { getConnection };
+
+export default supabase;
