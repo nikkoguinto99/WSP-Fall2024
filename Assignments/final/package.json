@@ -4,6 +4,7 @@
     "description": "",
     "scripts": {
       "start": "node server/index.js",
+      "build": "cd ../client && npm install && npm run build && cp -r ../client/dist ./dist",
       "dev": "nodemon server/index.js --watch server"
     },
     "dependencies": {

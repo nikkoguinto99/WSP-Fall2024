@@ -1,4 +1,5 @@
 const express = require("express")
+const path = require("path")
 const app = express()
 const userController = require("./controllers/users")
 const postController = require("./controllers/posts")
@@ -12,7 +13,7 @@ app.use((req, res, next) => {
     next()
 })
 app.use(express.json())
-app.use(express.static(__dirname + "/dist")) //Run 'npm run build' from inside client folder to create dist folder in server
+app.use(express.static(path.join(__dirname, "dist"))); // Serve static files from dist folder
 
 // Controllers
 app.get("/", (req, res, next) => {
