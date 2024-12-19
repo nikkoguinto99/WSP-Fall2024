@@ -77,7 +77,7 @@ export default defineComponent({
   },
   methods: {
     getImageUrl(profilePic: string): string {
-      return `/src/assets/photos/Pfps/${profilePic}`;
+      return `@/Pfps/${profilePic}`;
     },
   },
 });
